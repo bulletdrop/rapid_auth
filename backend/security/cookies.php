@@ -41,4 +41,19 @@ function check_cookie()
     return true;
 }
 
+function get_cookie_information()
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    
+
+    $cookie_data = explode("*#*", decrypt_data($_COOKIE["user_cookie"], $key));
+
+    if ($cookie_data[4] != $salt)
+        return 0;
+    
+    return $cookie_data;
+}
 ?>
