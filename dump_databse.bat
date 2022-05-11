@@ -1,0 +1,1 @@
+C:\xampp\mysql\bin\mysqldump.exe -u root -p rapid_auth > C:\xampp\htdocs\rapid_auth\rapid_auth.sql
