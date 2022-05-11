@@ -14,6 +14,33 @@ function get_username_by_uid($uid)
     return "0";
 }
 
+function uid_matches_username($username, $uid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT email FROM dashboard_users WHERE username= ? AND uid= ?");
+    $statement->execute(array(encrypt_data($username, $key), $uid)); 
+    
+    if ($statement->rowCount() == 0)
+        return false;
+
+    return true;
+}
+
+function username_matches_password($username, $password)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT uid FROM dashboard_users WHERE username= ? and password= ?");
+    $statement->execute(array(encrypt_data($username, $key), encrypt_data($password, $key)));   
+    if ($statement->rowCount() == 0)
+        return false;
+    
+    return true;
+}
+
 function get_uid_by_username($username)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';

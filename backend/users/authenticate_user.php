@@ -9,6 +9,7 @@ switch (false)
         echo json_encode(array("status" => "too_short_input"));
         break;
     case (!valid_input($post_username, $post_password)):
+        update_last_ip($post_username);
         echo json_encode(array("status" => "success"));
         break;
     default:
@@ -27,6 +28,15 @@ function valid_input($username, $password)
         return false;
     
     return true;
+}
+
+function update_last_ip($username)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("UPDATE dashboard_users SET last_ip = ? WHERE username= ?;");
+    $statement->execute(array($_SERVER['REMOTE_ADDR'], encrypt_data($username, $key)));
 }
 
 ?>

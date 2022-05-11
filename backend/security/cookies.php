@@ -1,0 +1,44 @@
+<?php
+
+function add_cookie($username, $password, $uid)
+{
+    //Pass only decrypted data 
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $cookie_value = encrypt_data($username . "*#*" . $password . "*#*" . $uid . "*#*" . $_SERVER['REMOTE_ADDR'] . "*#*" . $salt, $key);
+    setcookie("user_cookie", $cookie_value, time()+86400, "/rapid_auth");
+}
+
+function check_cookie()
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    
+
+    $cookie_data = explode("*#*", decrypt_data($_COOKIE["user_cookie"], $key));
+
+    if ($cookie_data[4] != $salt)
+        return false;
+    
+    if (!uid_matches_username($cookie_data[0], $cookie_data[2]))
+        return false;
+    
+        
+    if ($cookie_data[3] != $_SERVER['REMOTE_ADDR'])
+        return false;
+    
+    if (get_last_ip_by_uid($cookie_data[2]) != $_SERVER['REMOTE_ADDR'])
+        return false;
+    
+    if (!username_matches_password($cookie_data[0], $cookie_data[1]))
+        return false;
+
+
+
+    return true;
+}
+
+?>
