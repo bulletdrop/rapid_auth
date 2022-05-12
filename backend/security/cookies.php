@@ -7,7 +7,8 @@ function add_cookie($username, $password, $uid)
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
     $cookie_value = encrypt_data($username . "*#*" . $password . "*#*" . $uid . "*#*" . $_SERVER['REMOTE_ADDR'] . "*#*" . $salt, $key);
-    setcookie("user_cookie", $cookie_value, time()+86400, "/rapid_auth");
+    //setcookie("user_cookie", $cookie_value, time()+86400, "/rapid_auth");
+    echo '<script>document.cookie = "user_cookie=' . $cookie_value . '; path=/rapid_auth";</script>';
 }
 
 function check_cookie()
@@ -15,8 +16,6 @@ function check_cookie()
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
-
-    
 
     $cookie_data = explode("*#*", decrypt_data($_COOKIE["user_cookie"], $key));
 

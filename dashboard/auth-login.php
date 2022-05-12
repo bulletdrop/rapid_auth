@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Greeva - Responsive Bootstrap 4 Admin Dashboard</title>
+        <title>Rapid Auth - Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -19,10 +19,11 @@
         <!-- App css -->
         <!-- build:css -->
         <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
+        <script> 
+            function showError(msg) { document.getElementById("error_msg").innerHTML  = msg; document.getElementById("error_msg").style.opacity = 1; }
+        </script>
         <!-- endbuild -->
-
     </head>
-
     <body class="bg-account-pages">
 
         <!-- Login -->
@@ -44,31 +45,31 @@
                                         </h2>
                                     </div>
 
+                                    <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <p id="error_msg" style="color:#d64040; opacity: 0;">Wrong Username / Password</b></a></p>
+                                            </div>
+                                    </div> <!-- end row-->
+
                                     <div class="account-content">
-                                        <form action="#">
+                                        <form method="post">
                                             <div class="form-group mb-3">
-                                                <label for="emailaddress" class="font-weight-medium">Email address</label>
-                                                <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                                <label for="emailaddress" class="font-weight-medium">Username</label>
+                                                <input name="username" class="form-control" type="text" id="emailaddress" required="" placeholder="Enter your username">
                                             </div>
 
                                             <div class="form-group mb-3">
                                                 <a href="auth-recoverpassword.html" class="text-muted float-right"><small>Forgot your password?</small></a>
                                                 <label for="password" class="font-weight-medium">Password</label>
-                                                <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                                                <input name="password" class="form-control" type="password" required="" id="password" placeholder="Enter your password">
                                             </div>
 
                                             <div class="form-group mb-3">
-                                                <div class="checkbox checkbox-info">
-                                                    <input id="remember" type="checkbox">
-                                                    <label for="remember">
-                                                        Remember me
-                                                    </label>
-                                                </div>
                                             </div>
 
                                             <div class="form-group row text-center">
                                                 <div class="col-12">
-                                                    <button class="btn btn-block btn-success waves-effect waves-light" type="submit">Sign In</button>
+                                                    <button name="submit" class="btn btn-block btn-success waves-effect waves-light" type="submit">Sign In</button>
                                                 </div>
                                             </div>
                                         </form> <!-- end form -->
@@ -101,6 +102,38 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
-
     </body>
 </html>
+
+<?php
+    error_reporting(0);
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+
+    try 
+    {
+        $post_username = $_POST["username"];
+        $post_password = $_POST["password"];
+    }
+    catch (Exception $e){}
+
+    if (isset($_POST['submit']) && strlen($post_password) > 4 && strlen($post_username) > 3)
+    {
+        switch (false)
+        {
+            case (strlen($post_password) > 4 && strlen($post_username) > 3):
+                echo '<script>showError("Input too short")</script>';
+                break;
+            case (!valid_input($post_username, $post_password)):
+                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+                update_last_ip($post_username);
+                add_cookie($post_username, $post_password, get_uid_by_username($post_username));    
+                echo '<script>window.location.href = "dashboard.php";</script>';
+                break;
+            default:
+                echo '<script>showError("Wrong Username / Password")</script>';
+                break;
+        }
+    }
+
+?>

@@ -130,6 +130,32 @@ LOCK TABLES `loader_users` WRITE;
 /*!40000 ALTER TABLE `loader_users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `loader_users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `statistics`
+--
+
+DROP TABLE IF EXISTS `statistics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statistics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `total_users` int(11) DEFAULT NULL,
+  `total_groups` int(11) DEFAULT NULL,
+  `total_keys` int(11) DEFAULT NULL,
+  `current_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `statistics`
+--
+
+LOCK TABLES `statistics` WRITE;
+/*!40000 ALTER TABLE `statistics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `statistics` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -140,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-11 22:35:33
+-- Dump completed on 2022-05-12 16:45:33
