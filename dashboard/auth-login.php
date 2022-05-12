@@ -76,7 +76,7 @@
 
                                         <div class="row mt-3">
                                             <div class="col-12 text-center">
-                                                <p class="text-muted">Don't have an account? <a href="auth-register.html" class="text-muted m-l-5"><b>Sign Up</b></a></p>
+                                                <p class="text-muted">Don't have an account? <a href="auth-register.php" class="text-muted m-l-5"><b>Sign Up</b></a></p>
                                             </div>
                                         </div> <!-- end row-->
                                     </div> <!-- end account-content -->

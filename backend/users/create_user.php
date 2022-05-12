@@ -1,28 +1,4 @@
 <?php
-$post_username = $_POST["username"];
-$post_password = $_POST["password"];
-$post_email = $_POST["email"];
-
-switch (false)
-{
-    case (strlen($post_email) > 4 && strlen($post_password) > 4 && strlen($post_username) > 3):
-        echo json_encode(array("status" => "too_short_input"));
-        break;
-    case (!check_username_in_use($post_username)):
-        echo json_encode(array("status" => "username_in_use"));
-        break;
-    case (!check_email_in_use($post_email)):
-        echo json_encode(array("status" => "email_in_use"));
-        break;
-    case (passed_password_policy($post_password)):
-        echo json_encode(array("status" => "password_policy"));
-        break;
-    default:
-        create_user($post_username, $post_password, $post_email);
-        echo json_encode(array("status" => "success"));
-        break;
-}
-
 
 function check_username_in_use($username)
 {
