@@ -55,6 +55,34 @@ function get_uid_by_username($username)
     return "-1";
 }
 
+function get_rank_by_uid($uid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT rank FROM dashboard_users WHERE uid= ?");
+    $statement->execute(array($uid));   
+    while($row = $statement->fetch()) {
+        return $row["rank"];
+    }
+    
+    return "-1";
+}
+
+function get_profile_picture_url_by_uid($uid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT profile_picture_url FROM dashboard_users WHERE uid= ?");
+    $statement->execute(array($uid));   
+    while($row = $statement->fetch()) {
+        return $row["profile_picture_url"];
+    }
+    
+    return "-1";
+}
+
 function get_email_by_username($username)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';

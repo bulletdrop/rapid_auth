@@ -72,9 +72,9 @@ File: Dashboard
         //chart
         var charts = [];
         // create gradient
-        var ctx = document.getElementById('sales-chart').getContext("2d");
+        var ctx = document.getElementById('user-chart').getContext("2d");
         var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-        gradientStroke.addColorStop(0, "#0acf97");
+        gradientStroke.addColorStop(0, "#f542c2");
         gradientStroke.addColorStop(1, "#02a8b5");
         
         //creating lineChart
@@ -131,7 +131,76 @@ File: Dashboard
             }
         };
 
-        charts.push(this.respChart($("#sales-chart"), 'Line', lineChart, lineOpts));
+        charts.push(this.respChart($("#user-chart"), 'Line', lineChart, lineOpts));
+
+
+
+
+
+
+
+
+        var ctx1 = document.getElementById('key-chart').getContext("2d");
+        var gradientStroke1 = ctx1.createLinearGradient(500, 0, 100, 0);
+        gradientStroke1.addColorStop(0, "#e642f5");
+        gradientStroke1.addColorStop(1, "#42f542");
+        
+        //creating lineChart
+        var lineChart1 = {
+            labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+            datasets: [ {
+                label: "Sales",
+                fill: true,
+                backgroundColor: "rgba(2, 168, 181, 0.1)",
+                borderColor: gradientStroke1,
+                pointBorderColor: gradientStroke1,
+                pointBackgroundColor: gradientStroke1,
+                pointHoverBackgroundColor: gradientStroke1,
+                pointHoverBorderColor: gradientStroke1,
+                data: [18, 41, 86, 49, 20, 65, 64, 86, 49, 30, 45, 100]
+            }]
+        };
+
+        var lineOpts1 = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false
+            },
+            animation: {
+                easing: "easeInOutBack"
+            },
+            scales: {
+                yAxes: [{
+                    display: false,
+                    ticks: {
+                        fontColor: "rgba(0,0,0,0.5)",
+                        fontStyle: "bold",
+                        beginAtZero: true,
+                        maxTicksLimit: 5,
+                        padding: 0
+                    },
+                    gridLines: {
+                        drawTicks: false,
+                        display: false
+                    }
+                }],
+                xAxes: [{
+                    display: false,
+                    gridLines: {
+                        zeroLineColor: "transparent"
+                    },
+                    ticks: {
+                        padding: 0,
+                        fontColor: "rgba(0,0,0,0.5)",
+                        fontStyle: "bold"
+                    }
+                }]
+            }
+        };
+
+        charts.push(this.respChart($("#key-chart"), 'Line', lineChart1, lineOpts1));
+        //charts.push(this.respChart($("#sales-chart1"), 'Line', lineChart, lineOpts));
 
         /*barchart
         var barChart = {
@@ -176,7 +245,7 @@ File: Dashboard
         charts.push(this.respChart($("#high-performing-product"), 'Bar', barChart, barOpts));
         */
 
-        //creating line for FUNNEL
+        /*creating line for FUNNEL
         var ctx1 = document.getElementById('conversion-chart').getContext("2d");
         var gradientStroke1 = ctx1.createLinearGradient(0, 300, 0, 100);
         gradientStroke1.addColorStop(0, "#02a8b5");
@@ -193,7 +262,7 @@ File: Dashboard
                 pointBackgroundColor: gradientStroke1,
                 pointHoverBackgroundColor: "transparent",
                 pointHoverBorderColor: "transparent",
-                data: [28, 34, 46, 76, 60, 62,26, 14]
+                data: [100, 34, 46, 76, 60, 62,26, 14]
             }]
         };
 
@@ -238,7 +307,7 @@ File: Dashboard
         };
 
         charts.push(this.respChart($("#conversion-chart"), 'Line', funnelChart, funnelChartOpts));
-
+*/
 
         //creating lineChart
         var lineChart = {

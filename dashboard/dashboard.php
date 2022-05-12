@@ -53,38 +53,13 @@
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Agnes K <i class="mdi mdi-chevron-down"></i> </span>
+                                <img id="dashboard_profile_picture_1" src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1" id="dashboard_username">Agnes K <i class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
                                     <h6 class="text-overflow m-0">Welcome !</h6>
                                 </div>
-    
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="dripicons-user"></i> <span>My Account</span>
-                                </a>
-    
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="dripicons-gear"></i> <span>Settings</span>
-                                </a>
-    
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="dripicons-help"></i> <span>Support</span>
-                                </a>
-    
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="dripicons-lock"></i> <span>Lock Screen</span>
-                                </a>
-    
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="dripicons-power"></i> <span>Logout</span>
-                                </a>
     
                             </div>
                         </li>
@@ -106,12 +81,6 @@
                                     <img src="assets/images/logo_sm.png" alt="" height="28">
                                 </span>
                             </a>
-                        </li>
-                        <li class="app-search">
-                            <form>
-                                <input type="text" placeholder="Search..." class="form-control">
-                                <button type="submit" class="sr-only"></button>
-                            </form>
                         </li>
                     </ul>
                 </div>
@@ -263,7 +232,6 @@
                 <div class="page-title-alt-bg"></div>
                 <div class="page-title-box">
                     <ol class="breadcrumb float-right">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                     <h4 class="page-title">Dashboard</h4>
@@ -276,35 +244,19 @@
 
                 <div class="card-box">
                     <h1>Message of the day</h1>
-                    <p>Hello dear user, thanks for signing up!	&#128640;</p>
+                    <p id="message_of_the_day">Hello user, thanks for signing up!	&#128640;</p>
                 </div> <!-- end card-box-->
 
                 </div> <!-- end col -->
 
                     <div class="col-xl-4">
-
                         <div class="card-box">
-                            <div class="dropdown float-right">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="mdi mdi-dots-horizontal"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Download</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Upload</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                </div>
-                            </div>
                             <h4 class="header-title">Totals Users</h4>
                             <div class="mb-3 mt-4">
                                 <h2 class="font-weight-light">500</h2>
                             </div>
                             <div class="chartjs-chart dash-sales-chart">
-                                <canvas id="sales-chart"></canvas>
+                                <canvas id="user-chart"></canvas>
                             </div>
                         </div><!-- end card-box-->
 
@@ -313,36 +265,15 @@
 
                     <div class="col-xl-4">
                         <div class="card-box">
-                            <div class="dropdown float-right">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="mdi mdi-dots-horizontal"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Download</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Upload</a>
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                </div>
+                            <h4 class="header-title">Totals Keys</h4>
+                            <div class="mb-3 mt-4">
+                                <h2 class="font-weight-light">400</h2>
                             </div>
-                            <h4 class="header-title mb-3">Total Revenue</h4>
-                            <div class="row text-center">
-                                <div class="col-6 mb-3">
-                                    <h3 class="font-weight-light">8,459</h3>
-                                    <p class="text-muted text-overflow">Total Sales</p>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <h3 class="font-weight-light">584</h3>
-                                    <p class="text-muted text-overflow">Open Compaign</p>
-                                </div>
+                            <div class="chartjs-chart dash-sales-chart">
+                                <canvas id="key-chart"></canvas>
                             </div>
-                            <div class="chartjs-chart conversion-chart">
-                                <canvas id="conversion-chart"></canvas>
-                            </div>
-                        </div>  <!-- end card-box-->
+                        </div><!-- end card-box-->
+
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->
@@ -377,102 +308,16 @@
                 <!-- User box -->
                 <div class="user-box">
                     <div class="user-img">
-                        <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                        <img id="dashboard_profile_picture" src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                         <a href="" class="user-edit"><i class="mdi mdi-pencil"></i></a>
                     </div>
                     
-                    <h5><a href="#">Agnes Kennedy</a> </h5>
-                    <p class="text-muted mb-0"><small>Admin Head</small></p>
+                    <h5><a href="#" id="dashboard_username_1">Agnes Kennedy</a> </h5>
+                    <p class="text-muted mb-0" id="dashboard_rank"><small>Admin Head</small></p>
                 </div>
-
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h5 class="pl-3">Basic Settings</h5>
-                <hr class="mb-0" />
-
-                <div class="p-3">
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="checkbox1" type="checkbox" checked>
-                        <label for="checkbox1">
-                            Notifications
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="checkbox2" type="checkbox" checked>
-                        <label for="checkbox2">
-                            API Access
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="checkbox3" type="checkbox">
-                        <label for="checkbox3">
-                            Auto Updates
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="checkbox4" type="checkbox" checked>
-                        <label for="checkbox4">
-                            Online Status
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-0">
-                        <input id="checkbox5" type="checkbox" checked>
-                        <label for="checkbox5">
-                            Auto Payout
-                        </label>
-                    </div>
-                </div>
-
 
                 <!-- Timeline -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
-                <hr class="mb-0" />
-                <div class="p-3">
-                    <div class="inbox-widget">
-                        <a href="#">
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
-                                <p class="inbox-item-author">Chadengle</p>
-                                <p class="inbox-item-text">Hey! there I'm available...</p>
-                                <p class="inbox-item-date">13:40 PM</p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
-                                <p class="inbox-item-author">Tomaslau</p>
-                                <p class="inbox-item-text">I've finished it! See you so...</p>
-                                <p class="inbox-item-date">13:34 PM</p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
-                                <p class="inbox-item-author">Stillnotdavid</p>
-                                <p class="inbox-item-text">This theme is awesome!</p>
-                                <p class="inbox-item-date">13:17 PM</p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
-                                <p class="inbox-item-author">Kurafire</p>
-                                <p class="inbox-item-text">Nice to meet you</p>
-                                <p class="inbox-item-date">12:20 PM</p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="inbox-item">
-                                <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
-                                <p class="inbox-item-author">Shahedk</p>
-                                <p class="inbox-item-text">Hey! there I'm available...</p>
-                                <p class="inbox-item-date">10:15 AM</p>
-                            </div>
-                        </a>
-                    </div>
                 </div>
-            </div>
         </div>
         <!-- /Right-bar -->
 
@@ -521,5 +366,30 @@
     // error_reporting(0);
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+
+
+    //This Part should be on every dashboard site expect login and sign up 
+    if (!check_cookie())
+        echo '<script>window.location.href = "auth-login.php";</script>';
+
+    $dashboard_username = get_cookie_information()[0];
+    $dashboard_profile_picture_url = get_profile_picture_url_by_uid(get_cookie_information()[2]);
+    
+    echo '<script>document.getElementById("dashboard_username").innerHTML = "' . $dashboard_username . '";</script>';
+
+    echo '<script>document.getElementById("dashboard_username_1").innerHTML = "' . $dashboard_username . '";</script>';
+
+    echo '<script>document.getElementById("dashboard_rank").innerHTML = "' . get_rank_by_uid(get_cookie_information()[2]) . '";</script>';
+
+    echo '<script>document.getElementById("dashboard_profile_picture").src = "' . $dashboard_profile_picture_url . '";</script>';
+
+    echo '<script>document.getElementById("dashboard_profile_picture_1").src = "' . $dashboard_profile_picture_url . '";</script>';
+
+    //This is the end of the part for every website
+
+    echo '<script>document.getElementById("message_of_the_day").innerHTML = "Hello ' . $dashboard_username . ', thanks for signing up!	&#128640;";</script>';
+
+    
 
 ?>

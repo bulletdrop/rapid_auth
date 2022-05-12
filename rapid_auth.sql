@@ -79,6 +79,8 @@ CREATE TABLE `dashboard_users` (
   `password` varchar(500) DEFAULT NULL,
   `email` varchar(500) DEFAULT NULL,
   `last_ip` varchar(255) DEFAULT NULL,
+  `rank` varchar(255) DEFAULT 'Member',
+  `profile_picture_url` varchar(1000) DEFAULT 'https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -89,7 +91,7 @@ CREATE TABLE `dashboard_users` (
 
 LOCK TABLES `dashboard_users` WRITE;
 /*!40000 ALTER TABLE `dashboard_users` DISABLE KEYS */;
-INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1'),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==',NULL),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL);
+INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png'),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png'),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png'),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png');
 /*!40000 ALTER TABLE `dashboard_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,9 +171,9 @@ CREATE TABLE `statistics` (
   `total_users` int(11) DEFAULT NULL,
   `total_groups` int(11) DEFAULT NULL,
   `total_keys` int(11) DEFAULT NULL,
-  `current_date` date DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1542 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,6 +182,7 @@ CREATE TABLE `statistics` (
 
 LOCK TABLES `statistics` WRITE;
 /*!40000 ALTER TABLE `statistics` DISABLE KEYS */;
+INSERT INTO `statistics` VALUES (1529,93,60,60,'2022-05-12'),(1530,94,7,46,'2022-05-12'),(1531,98,95,9,'2022-05-12'),(1532,35,30,76,'2022-05-12'),(1533,41,56,10,'2022-05-12'),(1534,73,43,48,'2022-05-12'),(1535,73,58,33,'2022-05-12'),(1536,82,54,26,'2022-05-12'),(1537,39,85,66,'2022-05-12'),(1538,73,11,21,'2022-05-12'),(1539,23,55,20,'2022-05-12'),(1540,31,57,5,'2022-05-12'),(1541,28,52,70,'2022-05-12');
 /*!40000 ALTER TABLE `statistics` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -192,4 +195,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-12 18:44:22
+-- Dump completed on 2022-05-12 22:02:29
