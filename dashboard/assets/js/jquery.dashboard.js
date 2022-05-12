@@ -133,7 +133,7 @@ File: Dashboard
 
         charts.push(this.respChart($("#sales-chart"), 'Line', lineChart, lineOpts));
 
-        //barchart
+        /*barchart
         var barChart = {
             labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"],
             datasets: [
@@ -174,7 +174,7 @@ File: Dashboard
         };
 
         charts.push(this.respChart($("#high-performing-product"), 'Bar', barChart, barOpts));
-
+        */
 
         //creating line for FUNNEL
         var ctx1 = document.getElementById('conversion-chart').getContext("2d");
@@ -306,7 +306,7 @@ File: Dashboard
         charts.push(this.respChart($("#lineChart"),'Line',lineChart, lineOpts1));
 
 
-        //donut chart
+        /*donut chart
         var donutChart = {
             labels: [
                 "Wallet Balance",
@@ -333,7 +333,7 @@ File: Dashboard
             }
         };
         charts.push(this.respChart($("#doughnut"),'Doughnut',donutChart, donutOpts));
-
+        */
         //creating lineChart
         var DataUsesChart = {
             labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
