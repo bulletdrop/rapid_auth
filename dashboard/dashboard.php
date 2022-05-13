@@ -367,7 +367,7 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
-
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/get_stats.php';
 
     //This Part should be on every dashboard site expect login and sign up 
     if (!check_cookie())
@@ -389,6 +389,8 @@
     //This is the end of the part for every website
 
     echo '<script>document.getElementById("message_of_the_day").innerHTML = "Hello ' . $dashboard_username . ', thanks for signing up!	&#128640;";</script>';
+
+    echo get_js();
 
     
 
