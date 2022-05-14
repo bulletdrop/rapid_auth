@@ -33,7 +33,7 @@ function uid_in_group($uid)
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
-    $statement = $pdo->prepare("SELECT gid FROM dashboard_users WHERE uid=? AND NOT gid= -1");
+    $statement = $pdo->prepare("SELECT gid FROM dashboard_users WHERE uid=? AND gid> -1");
     $statement->execute(array($uid)); 
     
     if ($statement->rowCount() == 0)
