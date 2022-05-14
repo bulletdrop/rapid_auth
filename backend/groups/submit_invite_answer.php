@@ -1,9 +1,15 @@
 <?php
 
-if ($_POST["answer"] == "Accept")
-    accept_invite();
-elseif ($_POST["answer"] == "Decline")
-    update_group_invite(false);
+if (check_invite_valid())
+{
+    if ($_POST["answer"] == "Accept")
+        accept_invite();
+    elseif ($_POST["answer"] == "Decline")
+        update_group_invite(false);
+}
+
+echo '<script>window.location.href = "../../dashboard/group_invites.php";</script>';
+
 
 function accept_invite()
 {
@@ -14,25 +20,24 @@ function accept_invite()
     if (!check_cookie())
         echo '<script>window.location.href = "../../dashboard/auth-login.php";</script>';
         
-    if (check_invite_valid())
-    {
-        $uid = get_cookie_information()[2];
-
-        $uid_in_group = uid_in_group($uid);
     
-        if (!$uid_in_group)
-            add_in_group($uid, get_gid_by_invite_id($_GET["id"]));
-            echo '<script>window.location.href = "../../dashboard/group_invites.php";</script>';
-        
-        if ($uid_in_group)
-        {
-            remove_from_group(get_gid_by_uid($uid), $uid);
-            update_group_array(get_gid_by_invite_id($_GET["id"]), $uid);
-            update_in_user_table(get_gid_by_invite_id($_GET["id"]), $uid);
-            update_group_invite(true);
-            echo '<script>window.location.href = "../../dashboard/group_invites.php";</script>';
-        }
+    $uid = get_cookie_information()[2];
+
+    $uid_in_group = uid_in_group($uid);
+
+    if (!$uid_in_group)
+        add_in_group($uid, get_gid_by_invite_id($_GET["id"]));
+        echo '<script>window.location.href = "../../dashboard/group_invites.php";</script>';
+    
+    if ($uid_in_group)
+    {
+        remove_from_group(get_gid_by_uid($uid), $uid);
+        update_group_array(get_gid_by_invite_id($_GET["id"]), $uid);
+        update_in_user_table(get_gid_by_invite_id($_GET["id"]), $uid);
+        update_group_invite(true);
+        echo '<script>window.location.href = "../../dashboard/group_invites.php";</script>';
     }
+    
 
     echo '<script>window.location.href = "../../dashboard/group_invites.php";</script>';   
 }
