@@ -190,6 +190,23 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
+        <!-- Kick member modal -->
+        <div class="modal fade kick_member_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure ?
+                        
+                    </div>
+                    <button id="kick_button" onclick="leave_group()" type="button" class="btn btn-success w-md">Yes</button>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
 
         <div class="wrapper">
             <div class="container-fluid">
@@ -219,6 +236,37 @@
                                 if (uid_in_group(get_cookie_information()[2]) && get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) != get_cookie_information()[2])
                                     echo '<p>You\'re currently only a group memeber, you can only leave the current group</p>
                                     <button onclick="confirm_leave_group()" type="button" class="btn btn-danger w-md">Leave group</button>';
+
+                                if (get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) == get_cookie_information()[2])
+                                {
+                                    $gid = get_gid_by_uid(get_cookie_information()[2]);
+                                    $member_array = json_decode(get_member_array_by_gid($gid));
+                                    echo '
+                                    <div class="col-lg-12">
+                                    <div class="card-box">
+                                        <h4 class="m-t-0 header-title">Member</h4>
+                                        <button type="button" class="btn btn-primary w-md">Invite</button>
+                                        <table class="table table-striped mb-0">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Username</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>';
+                                            foreach ($member_array as $member)
+                                            {
+                                                echo '<tr><td>' . $member . '</td>';
+                                                echo '<td>' . get_username_by_uid($member) . '</td>';
+                                                echo '<td><button onclick="confirm_kick(' . $member . ', ' . get_cookie_information()[2] . ')" type="button" class="btn btn-danger w-md">Kick</button></td></tr>';
+                                            }
+                                    echo  '</tbody>
+                                        </table>
+                                    </div> <!-- end card-box -->
+                                </div>
+                                    ';
+                                }
                             ?>
                         </div> <!-- end card-box -->
                     </div><!-- end col -->
@@ -337,6 +385,20 @@
             function confirm_leave_group()
             {
                 $(".leave_group_modal").modal();
+            }
+
+            function confirm_kick(id, uid)
+            {
+                if (id == uid)
+                {
+                    error_msg("You can't kick yourself");
+                }
+                else
+                {
+                    document.getElementById("kick_button").onclick = function confirm_kick() {window.location.href = "../backend/groups/kick_member.php?confirmed=yes&id=" + id};
+                    $(".kick_member_modal").modal();
+                }
+                
             }
         </script>
     </body>

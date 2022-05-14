@@ -1,37 +1,33 @@
 <?php
-
-include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
-include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
 
 if (check_cookie())
 {
-    if ($_GET["confirmed"] == "yes")
+    $uid = get_cookie_information()[2];
+    $gid = get_gid_by_uid($uid);
+    if (get_group_owner_uid_by_gid($gid) == $uid)
     {
-        $cookie_uid = get_cookie_information()[2];
-        leave_group_array(get_gid_by_uid($cookie_uid), $cookie_uid);
-        update_user_table_gid($cookie_uid);
+        update_user_table_gid($_GET["id"], $gid);
+        kick_group_array($gid, $_GET["id"]);
         echo '<script>window.location.href = "../../dashboard/dashboard.php";</script>';
     }
-    else
-        echo '<script>window.location.href = "../../dashboard/dashboard.php";</script>';
 }
 else
     echo '<script>window.location.href = "../../dashboard/auth-login.php";</script>';
 
-    
+echo '<script>window.location.href = "../../dashboard/dashboard.php";</script>';
 
-function update_user_table_gid($uid)
+function update_user_table_gid($uid, $gid)
 {
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    $statement = $pdo->prepare("UPDATE dashboard_users SET gid = -1 WHERE uid=?;");
-    $statement->execute(array($uid));
+    $statement = $pdo->prepare("UPDATE dashboard_users SET gid = -1 WHERE uid=? AND gid=?;");
+    $statement->execute(array($uid, $gid));
 }
 
-
-function leave_group_array($gid, $uid)
+function kick_group_array($gid, $uid)
 {
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
