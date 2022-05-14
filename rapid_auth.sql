@@ -16,6 +16,58 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `dashboard_group_invites`
+--
+
+DROP TABLE IF EXISTS `dashboard_group_invites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dashboard_group_invites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gid` int(11) DEFAULT NULL,
+  `accepted` int(11) DEFAULT 0,
+  `declined` int(11) DEFAULT 0,
+  `uid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dashboard_group_invites`
+--
+
+LOCK TABLES `dashboard_group_invites` WRITE;
+/*!40000 ALTER TABLE `dashboard_group_invites` DISABLE KEYS */;
+INSERT INTO `dashboard_group_invites` VALUES (1,1,1,0,1);
+/*!40000 ALTER TABLE `dashboard_group_invites` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dashboard_group_license_keys`
+--
+
+DROP TABLE IF EXISTS `dashboard_group_license_keys`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dashboard_group_license_keys` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key_name` varchar(500) DEFAULT NULL,
+  `used` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dashboard_group_license_keys`
+--
+
+LOCK TABLES `dashboard_group_license_keys` WRITE;
+/*!40000 ALTER TABLE `dashboard_group_license_keys` DISABLE KEYS */;
+INSERT INTO `dashboard_group_license_keys` VALUES (1,'Dt4Xhp2bsQ==',1);
+/*!40000 ALTER TABLE `dashboard_group_license_keys` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `dashboard_groups`
 --
 
@@ -27,8 +79,10 @@ CREATE TABLE `dashboard_groups` (
   `member_array` varchar(1000) DEFAULT NULL,
   `active_license` int(11) DEFAULT 0,
   `owner_uid` int(11) DEFAULT NULL,
+  `group_name` varchar(255) DEFAULT NULL,
+  `products_array` varchar(1000) DEFAULT '',
   PRIMARY KEY (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +91,7 @@ CREATE TABLE `dashboard_groups` (
 
 LOCK TABLES `dashboard_groups` WRITE;
 /*!40000 ALTER TABLE `dashboard_groups` DISABLE KEYS */;
+INSERT INTO `dashboard_groups` VALUES (1,'[3,5,1]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\"]'),(2,'[1]',1,1,'N8JEtYSRvY0=','[\"Test product\"]');
 /*!40000 ALTER TABLE `dashboard_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,8 +136,9 @@ CREATE TABLE `dashboard_users` (
   `last_ip` varchar(255) DEFAULT NULL,
   `rank` varchar(255) DEFAULT 'Member',
   `profile_picture_url` varchar(1000) DEFAULT 'https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',
+  `gid` int(11) DEFAULT -1 COMMENT '0 = no group',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +147,7 @@ CREATE TABLE `dashboard_users` (
 
 LOCK TABLES `dashboard_users` WRITE;
 /*!40000 ALTER TABLE `dashboard_users` DISABLE KEYS */;
-INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png'),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png'),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png'),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png');
+INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',2),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1);
 /*!40000 ALTER TABLE `dashboard_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,9 +162,10 @@ CREATE TABLE `loader_keys` (
   `kid` int(11) NOT NULL AUTO_INCREMENT,
   `owner_gid` int(11) DEFAULT NULL,
   `loader_user_uid` int(11) DEFAULT NULL,
-  `game_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
   `days_left` int(11) DEFAULT 0,
   `freezed` int(11) DEFAULT 0,
+  `lifetime` int(11) DEFAULT 0,
   PRIMARY KEY (`kid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -195,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 22:32:27
+-- Dump completed on 2022-05-14 15:15:57
