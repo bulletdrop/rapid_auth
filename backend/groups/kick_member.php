@@ -5,13 +5,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php
 
 if (check_cookie())
 {
-    $uid = get_cookie_information()[2];
-    $gid = get_gid_by_uid($uid);
-    if (get_group_owner_uid_by_gid($gid) == $uid)
+    if ($_GET["confirmed"] == "yes")
     {
-        update_user_table_gid($_GET["id"], $gid);
-        kick_group_array($gid, $_GET["id"]);
-        echo '<script>window.location.href = "../../dashboard/dashboard.php";</script>';
+        $uid = get_cookie_information()[2];
+        $gid = get_gid_by_uid($uid);
+        if (get_group_owner_uid_by_gid($gid) == $uid)
+        {
+            update_user_table_gid($_GET["id"], $gid);
+            kick_group_array($gid, $_GET["id"]);
+            echo '<script>window.location.href = "../../dashboard/dashboard.php";</script>';
+        }
     }
 }
 else

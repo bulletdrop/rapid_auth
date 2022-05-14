@@ -190,6 +190,29 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
+
+        <!-- Invite new Member Modal -->
+        <div class="modal fade invite_member_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                    <form method="post">
+                    <label>Username</label>
+                    <input name="new_member_username" type="text" required="" class="form-control">
+                    <input type="submit" name="submit" value="Invite" class="btn btn-success w-md">
+                    </form>
+                    
+                        
+                    </div>
+                    
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <!-- Kick member modal -->
         <div class="modal fade kick_member_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -245,7 +268,7 @@
                                     <div class="col-lg-12">
                                     <div class="card-box">
                                         <h4 class="m-t-0 header-title">Member</h4>
-                                        <button type="button" class="btn btn-primary w-md">Invite</button>
+                                        <button onclick="open_invite_modal()" type="button" class="btn btn-primary w-md">Invite</button>
                                         <table class="table table-striped mb-0">
                                             <thead>
                                             <tr>
@@ -387,6 +410,11 @@
                 $(".leave_group_modal").modal();
             }
 
+            function open_invite_modal()
+            {
+                $(".invite_member_modal").modal();
+            }
+
             function confirm_kick(id, uid)
             {
                 if (id == uid)
@@ -435,4 +463,28 @@
     if (!uid_in_group(get_cookie_information()[2]))
         echo '<script>error_msg("You\'re not in a group")</script>';   
 
+
+    if (get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) == get_cookie_information()[2])
+    {
+        if (isset($_POST["submit"]))
+        {
+            $invited_member_uid = get_uid_by_username($_POST["new_member_username"]);
+            $gid = get_gid_by_uid(get_cookie_information()[2]);
+            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/invite_member.php';
+            switch (false)
+            {
+                case !check_if_invite_exist($invited_member_uid, $gid):
+                    echo '<script>error_msg("This user is allready invited")</script>';     
+                    break;
+                case !check_if_allready_in_same_group($gid, $invited_member_uid):
+                    echo '<script>error_msg("This user is allready in this group")</script>';    
+                    break;
+                default:
+                    insert_invite_in_db($invited_member_uid, $gid); 
+                    break;
+            }
+        }
+    }
+    
+    
 ?>

@@ -47,7 +47,7 @@ function check_invite_valid()
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
-    $statement = $pdo->prepare("SELECT id FROM dashboard_group_invites WHERE id = ? WHERE accepted = 0 AND declined = 0");
+    $statement = $pdo->prepare("SELECT id FROM dashboard_group_invites WHERE id = ? AND accepted = 0 AND declined = 0");
     $statement->execute(array($_GET["id"])); 
     
     if ($statement->rowCount() == 0)
