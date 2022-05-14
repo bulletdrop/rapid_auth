@@ -14,6 +14,34 @@ function get_username_by_uid($uid)
     return "0";
 }
 
+function get_gid_by_uid($uid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT gid FROM dashboard_users WHERE uid= ?");
+    $statement->execute(array($uid));   
+    while($row = $statement->fetch()) {
+        return $row["gid"];
+    }
+    
+    return "0";
+}
+
+function uid_in_group($uid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT gid FROM dashboard_users WHERE uid=? AND NOT gid= -1");
+    $statement->execute(array($uid)); 
+    
+    if ($statement->rowCount() == 0)
+        return false;
+
+    return true;
+}
+
 function uid_matches_username($username, $uid)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';

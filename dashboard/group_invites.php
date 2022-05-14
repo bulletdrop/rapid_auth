@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Rapid Auth - Dashboard</title>
+        <title>Rapid Auth - Group Invites</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -26,6 +26,16 @@
         <!-- build:css -->
         <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
         <!-- endbuild -->
+
+        <!-- Select 2 css -->
+        <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+        <link href="assets/libs/mohithg-switchery/switchery.min.css" rel="stylesheet">
+        <link href="assets/libs/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+        <link href="assets/libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+        <link href="assets/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+        <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+        <link href="assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
 
     </head>
 
@@ -163,44 +173,76 @@
                 <!-- End page title box -->
                 
                 <div class="row">
-
-                <div class="col-xl-4">
-
-                <div class="card-box">
-                    <h1>Message of the day</h1>
-                    <p id="message_of_the_day">Hello user, thanks for signing up!	&#128640;</p>
-                </div> <!-- end card-box-->
-
-                </div> <!-- end col -->
-
-                    <div class="col-xl-4">
+                    <div class="col-12">
                         <div class="card-box">
-                            <h4 class="header-title">Totals Users</h4>
-                            <div class="mb-3 mt-4">
-                                <h2 class="font-weight-light">500</h2>
-                            </div>
-                            <div class="chartjs-chart dash-sales-chart">
-                                <canvas id="user-chart"></canvas>
-                            </div>
-                        </div><!-- end card-box-->
-
-                    </div> <!-- end col -->
-
-
-                    <div class="col-xl-4">
                         <div class="card-box">
-                            <h4 class="header-title">Totals Keys</h4>
-                            <div class="mb-3 mt-4">
-                                <h2 class="font-weight-light">400</h2>
-                            </div>
-                            <div class="chartjs-chart dash-sales-chart">
-                                <canvas id="key-chart"></canvas>
-                            </div>
-                        </div><!-- end card-box-->
+                            <h4 class="m-t-0 header-title">Your group invites</h4>
 
-                    </div> <!-- end col -->
-                </div>
-                <!-- end row -->
+                            <table class="table mb-0">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Group Name</th>
+                                    <th>Accept</th>
+                                    <th>Decline</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+                                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/group_invites.php';
+                                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+                                        include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+                                        foreach (get_group_invites_by_uid(get_cookie_information()[2]) as $group_invite)
+                                        {
+                                            echo '
+                                            <div class="modal fade bs-modal-accept" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            If you accept the invite then you will join a new group and leave the old one if you\' in one<br>
+                                                            <form method="post" action="../backend/groups/submit_invite_answer.php?id=' . $group_invite[0] . '"><input type="submit" name="answer" class="btn btn-success w-md" value="Accept" /></form>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+                                            <div class="modal fade bs-modal-denie" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure that you want to decline the group invite?
+                                                            <form method="post" action="../backend/groups/submit_invite_answer.php?id=' . $group_invite[0] . '"><input type="submit" name="answer" class="btn btn-danger w-md" value="Decline" /></form>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+                                            <tr>
+                                                <th scope="row">' . $group_invite[0] . '</th>
+                                                <td>' . $group_invite[4] . '</td>
+                                                <td><button type="button" data-toggle="modal" class="btn btn-success w-md" data-target=".bs-modal-accept">Accept</button></td>
+                                                <td><button type="button" data-toggle="modal" class="btn btn-danger w-md" data-target=".bs-modal-denie">Decline</button></td>
+                                            </tr>
+                                            ';
+                                        }
+
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
                 </div>
                 <!-- end row -->
 
@@ -272,16 +314,33 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
-        <script>
-            $(document).ready(function() {
-                // Default Datatable
-                $('#datatable').DataTable({
-                    "pageLength": 5,
-                    "searching": false,
-                    "lengthChange": false
-                });
-            } );
-        </script>
+
+        <!-- select2 js -->
+        <script src="assets/libs/select2/js/select2.min.js"></script>
+        <script src="assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+        <script src="assets/libs/mohithg-switchery/switchery.min.js"></script>
+        <script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+        <!-- Mask input -->
+        <script src="assets/libs/jquery-mask-plugin/jquery.mask.min.js"></script>
+        <!-- Bootstrap Select -->
+        <script src="assets/libs/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+        <script src="assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+
+        <script src="assets/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+
+        <script src="assets/libs/moment/moment.js"></script>
+
+        <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+        <script src="assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+        <!-- Init Js file -->
+        <script src="assets/js/jquery.form-advanced.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
 
     </body>
 </html>
@@ -312,10 +371,7 @@
 
     //This is the end of the part for every website
 
-    echo '<script>document.getElementById("message_of_the_day").innerHTML = "Hello ' . $dashboard_username . ', thanks for signing up!	&#128640;";</script>';
-
-    echo get_js();
-
+    
     
 
 ?>

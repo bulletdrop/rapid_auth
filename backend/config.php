@@ -14,7 +14,7 @@ $salt = "zd8bPbBxkvpCYke";
 $key = "aB2ZUHr6uujeaE6hu9sLwwpwPYFMbCMuTsgzJKKBuAqtRpYnDzHUenGqqV6MrWHRC7xJ6ufx2jD7T962vD3jNYZbjV6ZCyeLyPbpdTsDmchCDsjaPVYGbggpWXCYPbqy";
 
 //Database Input Config Allowed Chars etc.
-$allowed_chars_password = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?\"'#+-,.;:_=)([]{}$";
+$allowed_chars_password = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?\\\"'#+-,.;:_=)([]{}$";
 
 $special_chars = "!?\"'#+-,.;:_=)([]{}$";
 $lower_case_chars = "abcdefghijklmnopqrstuvwxyz";

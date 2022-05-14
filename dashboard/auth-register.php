@@ -151,7 +151,8 @@ if (isset($_POST["submit"]))
         default:
             create_user($post_username, $post_password, $post_email);
             add_cookie($post_username, $post_password, get_uid_by_username($post_username));
-            echo '<script>window.location.href = "dashboard.php";</script>';
+            sleep(1);
+            echo '<script>window.location.href = "auth-login.php";</script>';
             break;
     }
 }

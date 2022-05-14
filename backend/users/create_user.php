@@ -53,6 +53,20 @@ function passed_password_policy($password)
     if (strlen($password) < $password_length)
         return false;
     
+    //Checks if the password contains any not allowed char
+    $allowed_chars_count = 0;
+    foreach (str_split($password) as $char)
+    {
+        foreach (str_split($allowed_chars_password) as $s_chars)
+        {
+            if ($char == $s_chars)
+                $allowed_chars_count++;
+        }
+    }
+
+    if ($allowed_chars_count != strlen($password))
+        return false;
+
         
     
     if ($needs_lower_char)
