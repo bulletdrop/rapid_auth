@@ -91,7 +91,7 @@ CREATE TABLE `dashboard_groups` (
 
 LOCK TABLES `dashboard_groups` WRITE;
 /*!40000 ALTER TABLE `dashboard_groups` DISABLE KEYS */;
-INSERT INTO `dashboard_groups` VALUES (1,'[5,1,3]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"IDA License\",\"asd\",\"asdasd\"]'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]');
+INSERT INTO `dashboard_groups` VALUES (1,'[5,1,3]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\"]'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]');
 /*!40000 ALTER TABLE `dashboard_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,13 +161,14 @@ DROP TABLE IF EXISTS `loader_keys`;
 CREATE TABLE `loader_keys` (
   `kid` int(11) NOT NULL AUTO_INCREMENT,
   `owner_gid` int(11) DEFAULT NULL,
-  `loader_user_uid` int(11) DEFAULT NULL,
+  `loader_user_uid` int(11) DEFAULT -1,
   `product_id` int(11) DEFAULT NULL,
   `days_left` int(11) DEFAULT 0,
   `freezed` int(11) DEFAULT 0,
   `lifetime` int(11) DEFAULT 0,
+  `key_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`kid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,6 +177,7 @@ CREATE TABLE `loader_keys` (
 
 LOCK TABLES `loader_keys` WRITE;
 /*!40000 ALTER TABLE `loader_keys` DISABLE KEYS */;
+INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,1,1,'Dt4XhqmVrYR+A5wC'),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC');
 /*!40000 ALTER TABLE `loader_keys` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,4 +254,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-16 18:51:20
+-- Dump completed on 2022-05-16 22:12:07

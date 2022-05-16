@@ -2,20 +2,23 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Rapid Auth - Group Manager</title>
+        <title>Rapid Auth - Key Manager</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+         <!-- jvectormap -->
+         <link href="assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
+
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-        <!-- jvectormap -->
-        <link href="assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
 
         <!-- DataTables -->
         <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
         <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/datatables.net-select-bs4/css/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Icons css -->
         <link href="assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
@@ -36,6 +39,7 @@
         <link href="assets/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
         <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
         <link href="assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
 
     </head>
 
@@ -158,147 +162,155 @@
         </header>
         <!-- End Navigation Bar-->
 
-        <!-- Error Modal -->
-        <div class="modal fade error_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="mySmallModalLabel">Error :(</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body" id="error_msg">
-                        Wrong Username / Password
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
 
-        <!-- Leave group Modal -->
-        <div class="modal fade leave_group_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure that you want to leave the group?
-                        
-                    </div>
-                    <button onclick="leave_group()" type="button" class="btn btn-success w-md">Yes</button>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-
-        <!-- Invite new Member Modal -->
-        <div class="modal fade invite_member_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body">
-                    <form method="post">
-                    <label>Username</label>
-                    <input name="new_member_username" type="text" required="" class="form-control">
-                    <input type="submit" name="submit" value="Invite" class="btn btn-success w-md">
-                    </form>
-                    
-                        
-                    </div>
-                    
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-        <!-- Kick member modal -->
-        <div class="modal fade kick_member_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure ?
-                        
-                    </div>
-                    <button id="kick_button" onclick="leave_group()" type="button" class="btn btn-success w-md">Yes</button>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
+        
 
         <div class="wrapper">
             <div class="container-fluid">
-
-                <!-- Page title box -->
-                <div class="page-title-alt-bg"></div>
-                <div class="page-title-box">
-                    <ol class="breadcrumb float-right">
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                    <h4 class="page-title">Dashboard</h4>
-                </div>
-                <!-- End page title box -->
-                
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="m-t-0 header-title">Manage a group</h4>
-                            <?php
+                            <h4 class="header-title">Key Manager</h4>
+
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th>Key ID</th>
+                                    <th>Loader User UID</th>
+                                    <th>Product</th>
+                                    <th>Days left</th>
+                                    <th>Freezed</th>
+                                    <th>Lifetime</th>
+                                    <th>Key: </th>
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+                                <?php
                                 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
                                 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
                                 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/get_keys.php';
+
 
                                 if (!uid_in_group(get_cookie_information()[2]))
+                                {
                                     echo '<script>error_msg("You\'re not in a group")</script>';   
-                                
-                                if (uid_in_group(get_cookie_information()[2]) && get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) != get_cookie_information()[2])
-                                    echo '<p>You\'re currently only a group memeber, you can only leave the current group</p>
-                                    <button onclick="confirm_leave_group()" type="button" class="btn btn-danger w-md">Leave group</button>';
-
-                                if (get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) == get_cookie_information()[2])
+                                    
+                                }
+                                else
                                 {
                                     $gid = get_gid_by_uid(get_cookie_information()[2]);
-                                    $member_array = json_decode(get_member_array_by_gid($gid));
-                                    echo '
-                                    <div class="col-lg-12">
-                                    <div class="card-box">
-                                        <h4 class="m-t-0 header-title">Member</h4>
-                                        <button onclick="open_invite_modal()" type="button" class="btn btn-primary w-md">Invite</button>
-                                        <table class="table table-striped mb-0">
-                                            <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Username</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>';
-                                            foreach ($member_array as $member)
-                                            {
-                                                echo '<tr><td>' . $member . '</td>';
-                                                echo '<td>' . get_username_by_uid($member) . '</td>';
-                                                echo '<td><button onclick="confirm_kick(' . $member . ', ' . get_cookie_information()[2] . ')" type="button" class="btn btn-danger w-md">Kick</button></td></tr>';
-                                            }
-                                    echo  '</tbody>
-                                        </table>
-                                    </div> <!-- end card-box -->
-                                </div>
-                                    ';
+                                    $keys = get_keys_by_gid($gid);
+                                    foreach ($keys as $key)
+                                    {
+                                        echo '<tr>';
+                                        //Key ID
+                                        echo '<td>' . $key[0] . '</td>';
+                                        //Loader UID -1 means no owner
+                                        if ($key[2] == "-1")
+                                            echo '<td>None</td>';
+                                        else
+                                            echo '<td>' . $key[2] . '</td>';
+                                        //Product Name 
+                                        echo '<td>' . get_product_name_by_index($gid, $key[3]) . '</td>';
+                                        // Days left
+                                        echo '<td>' . $key[4] . '</td>';
+                                        // Freezed
+                                        if ($key[5] == 0)
+                                            echo '<td>No</td>';
+                                        else
+                                            echo '<td>Yes</td>';
+
+                                        //Lifetime
+                                        if ($key[6] == 0)
+                                            echo '<td>No</td>';
+                                        else
+                                            echo '<td>Yes</td>';
+                                        
+                                        //The key
+                                        echo '<td>' . $key[1] . '<button style="margin-left: 1em;" data-toggle="modal" data-target=".key_editor_modal_id' . $key[0] . '" type="button" class="btn btn-primary w-md">Edit</button></td>';
+                                        echo '</tr>';
+
+
+
+                                        echo '
+                                        <div class="modal fade key_editor_modal_id' . $key[0] . '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="myLargeModalLabel">Key Editor</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <!-- Modal Body start-->
+                                                    <form method="post">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Key</label>
+                                                            <div class="col-sm-10"> <input type="text" name="key_name" class="form-control" value="' . $key[1] . '"> </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Loader UID (-1 is no owner)</label>
+                                                            <div class="col-sm-10"> <input type="number" name="loader_user_uid" class="form-control" value="' . $key[2] . '"> </div>
+                                                        </div>
+                                                        
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Days left</label>
+                                                            <div class="col-sm-10"> <input type="number" name="days_left" class="form-control" value="' . $key[4] .'"> </div>
+                                                        </div>
+                                                        
+
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Freezed</label>
+                                                            <div class="col-sm-10"> <input name="freezed" type="checkbox"';
+                                                        
+                                                        
+                                                        if ($key[5] != 0)
+                                                            echo ' checked ';
+
+                                                        echo 'data-plugin="switchery" data-color="#039cfd"/></div>
+                                                        </div>
+
+
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Lifetime</label>
+                                                            <div class="col-sm-10"> <input name="lifetime" type="checkbox"';
+                                                            
+                                                        if ($key[6] != 0)
+                                                            echo ' checked ';
+
+                                                        echo 'data-plugin="switchery" data-color="#039cfd"/></div>
+                                                        </div>
+                                                        <button name="submit" type="submit" value="'.$key[0].'" class="btn btn-primary w-md">Save</button>
+                                                    </form>
+                                                        
+                                                    <!-- Modal Body end-->
+                                                    </div>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div>
+                                        ';
+                                        
+                                    }
                                 }
-                            ?>
+
+                                ?>
+                                </tbody>
+                            </table>
                         </div> <!-- end card-box -->
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
 
             </div> <!-- end container -->
         </div>
         <!-- end wrapper -->
+
+
+       <!-- end wrapper -->
         <!-- Footer -->
         <footer class="footer">
             <div class="container-fluid">
@@ -343,6 +355,23 @@
         <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/libs/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 
+        <!-- Datatable js -->
+        <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js" type="text/javascript"></script>
+        <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js" type="text/javascript"></script>
+        <script src="assets/libs/datatables.net-buttons/js/buttons.flash.min.js" type="text/javascript"></script>
+        <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js" type="text/javascript"></script>
+        <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js" type="text/javascript"></script>
+        <script src="assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js" type="text/javascript"></script>
+        <!-- Key Tables -->
+        <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <!-- Selection table -->
+        <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+
         <!-- KNOB JS -->
         <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
         <!-- Chart JS -->
@@ -386,59 +415,50 @@
         <script src="assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
 
         <!-- Init Js file -->
-        <script src="assets/js/jquery.form-advanced.js"></script>
+        <script src="assets/js/jquery.form-advanced.js"></script>                            
+
 
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+        
 
+        <script type="text/javascript">
+            $(document).ready(function() {
 
-        <script>
-            function error_msg(msg)
-            {
-                document.getElementById("error_msg").innerHTML = msg;
-                $(".error_modal").modal();
-            }
+                // Default Datatable
+                $('#datatable').DataTable({
+                    keys: true
+                });
 
-            function leave_group()
-            {
-                window.location.href = "../backend/groups/leave_group.php?confirmed=yes";
-            }
+                //Buttons examples
+                var table = $('#datatable-buttons').DataTable({
+                    lengthChange: false,
+                    buttons: ['copy', 'print']
+                });
 
-            function confirm_leave_group()
-            {
-                $(".leave_group_modal").modal();
-            }
+                // Multi Selection Datatable
+                $('#selection-datatable').DataTable({
+                    select: {
+                        style: 'multi'
+                    }
+                });
 
-            function open_invite_modal()
-            {
-                $(".invite_member_modal").modal();
-            }
+                table.buttons().container()
+                        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+            } );
 
-            function confirm_kick(id, uid)
-            {
-                if (id == uid)
-                {
-                    error_msg("You can't kick yourself");
-                }
-                else
-                {
-                    document.getElementById("kick_button").onclick = function confirm_kick() {window.location.href = "../backend/groups/kick_member.php?confirmed=yes&id=" + id};
-                    $(".kick_member_modal").modal();
-                }
-                
-            }
         </script>
     </body>
 </html>
-
 <?php
     // error_reporting(0);
+    
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/create_group.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/get_stats.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/get_keys.php';
 
     //This Part should be on every dashboard site expect login and sign up 
     if (!check_cookie())
@@ -458,33 +478,21 @@
     echo '<script>document.getElementById("dashboard_profile_picture_1").src = "' . $dashboard_profile_picture_url . '";</script>';
 
     //This is the end of the part for every website
-
     
-    if (!uid_in_group(get_cookie_information()[2]))
-        echo '<script>error_msg("You\'re not in a group")</script>';   
-
-
-    if (get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) == get_cookie_information()[2])
+    if (isset($_POST["submit"]) && strlen($_POST["key_name"]) > 0)
     {
-        if (isset($_POST["submit"]))
-        {
-            $invited_member_uid = get_uid_by_username($_POST["new_member_username"]);
-            $gid = get_gid_by_uid(get_cookie_information()[2]);
-            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/invite_member.php';
-            switch (false)
-            {
-                case !check_if_invite_exist($invited_member_uid, $gid):
-                    echo '<script>error_msg("This user is allready invited")</script>';     
-                    break;
-                case !check_if_allready_in_same_group($gid, $invited_member_uid):
-                    echo '<script>error_msg("This user is allready in this group")</script>';    
-                    break;
-                default:
-                    insert_invite_in_db($invited_member_uid, $gid); 
-                    break;
-            }
-        }
+        $lifetime = 0;
+        $freezed = 0;
+
+        if ($_POST["lifetime"] == "on")
+            $lifetime = 1;
+
+        if ($_POST["freezed"] == "on")
+            $freezed = 1;
+
+        $gid = get_gid_by_uid(get_cookie_information()[2]);
+        update_key($gid, $_POST["submit"], $_POST["loader_user_uid"], $_POST["days_left"], $freezed, $lifetime, $_POST["key_name"]);
+        unset($_POST["submit"]);
     }
-    
-    
+
 ?>

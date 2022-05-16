@@ -1,5 +1,20 @@
 <?php
 
+function get_product_name_by_index($gid, $index)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT products_array FROM dashboard_groups WHERE gid=?");
+    $statement->execute(array($gid));  
+    
+    while($row = $statement->fetch()) {
+        return json_decode($row["products_array"])[$index];
+    }
+    
+    return "-1";
+}
+
 function get_products_by_gid($gid)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';

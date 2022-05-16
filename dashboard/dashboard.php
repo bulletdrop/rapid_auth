@@ -73,7 +73,7 @@
     
                     <ul class="list-inline menu-left mb-0">
                         <li class="float-left">
-                            <a href="index.html" class="logo">
+                            <a href="dashboard.php" class="logo">
                                 <span class="logo-lg">
                                     <img src="assets/images/logo.png" alt="" height="20">
                                 </span>
