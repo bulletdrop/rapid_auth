@@ -1,0 +1,37 @@
+<?php
+
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+
+if (check_cookie())
+{
+    if ($_GET["confirmed"] == "yes")
+    {
+        $uid = get_cookie_information()[2];
+        $gid = get_gid_by_uid($uid);
+        if (get_group_owner_uid_by_gid($gid) == $uid)
+        {
+            update_product_array($_GET["id"], $gid);
+            echo '<script>window.location.href = "../../dashboard/product_manager.php";</script>';
+        }
+    }
+}
+else
+    echo '<script>window.location.href = "../../dashboard/auth-login.php";</script>';
+
+echo '<script>window.location.href = "../../dashboard/product_manager.php";</script>';
+
+function update_product_array($product_index, $gid)
+{
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
+    $current_products = get_products_by_gid($gid);
+    unset($current_products[$product_index]);
+    $new_products_array = json_encode(array_values($current_products));
+
+    $statement = $pdo->prepare("UPDATE dashboard_groups SET products_array = ? WHERE gid = ?;");
+    $statement->execute(array($new_products_array, $gid));
+}
+?>

@@ -29,7 +29,7 @@ CREATE TABLE `dashboard_group_invites` (
   `declined` int(11) DEFAULT 0,
   `uid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `dashboard_group_invites` (
 
 LOCK TABLES `dashboard_group_invites` WRITE;
 /*!40000 ALTER TABLE `dashboard_group_invites` DISABLE KEYS */;
-INSERT INTO `dashboard_group_invites` VALUES (1,1,1,0,1);
+INSERT INTO `dashboard_group_invites` VALUES (1,1,1,0,1),(2,1,0,0,-1),(3,1,1,0,3),(4,1,1,0,3);
 /*!40000 ALTER TABLE `dashboard_group_invites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +91,7 @@ CREATE TABLE `dashboard_groups` (
 
 LOCK TABLES `dashboard_groups` WRITE;
 /*!40000 ALTER TABLE `dashboard_groups` DISABLE KEYS */;
-INSERT INTO `dashboard_groups` VALUES (1,'[3,5,1]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\"]'),(2,'[1]',1,1,'N8JEtYSRvY0=','[\"Test product\"]');
+INSERT INTO `dashboard_groups` VALUES (1,'[5,1,3]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"IDA License\",\"asd\",\"asdasd\"]'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]');
 /*!40000 ALTER TABLE `dashboard_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +147,7 @@ CREATE TABLE `dashboard_users` (
 
 LOCK TABLES `dashboard_users` WRITE;
 /*!40000 ALTER TABLE `dashboard_users` DISABLE KEYS */;
-INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',2),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1);
+INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1);
 /*!40000 ALTER TABLE `dashboard_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-14 15:15:57
+-- Dump completed on 2022-05-16 18:51:20
