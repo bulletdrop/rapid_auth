@@ -15,6 +15,27 @@ function get_product_name_by_index($gid, $index)
     return "-1";
 }
 
+function get_product_index_by_name($gid, $product_name)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT products_array FROM dashboard_groups WHERE gid=?");
+    $statement->execute(array($gid));  
+    
+    while($row = $statement->fetch()) {
+        $index = 0;
+        foreach(json_decode($row["products_array"]) as $product)
+        {
+            if ($product == $product_name)
+                return $index;
+            $index++;
+        }
+    }
+    
+    return "-1";
+}
+
 function get_products_by_gid($gid)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
