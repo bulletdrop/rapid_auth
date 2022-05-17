@@ -42,120 +42,10 @@
     <body>
 
         <!-- Navigation Bar-->
-        <header id="topnav">
-            <nav class="navbar-custom">
-
-                <div class="container-fluid">
-                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-                        <li class="dropdown notification-list">
-                            <!-- Mobile menu toggle-->
-                            <a class="navbar-toggle nav-link">
-                                <div class="lines">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <!-- End mobile menu toggle-->
-                        </li>
-    
-                        <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="false" aria-expanded="false">
-                                <img id="dashboard_profile_picture_1" src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1" id="dashboard_username">Agnes K <i class="mdi mdi-chevron-down"></i> </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h6 class="text-overflow m-0">Welcome !</h6>
-                                </div>
-    
-                            </div>
-                        </li>
-                        <li class="dropdown notification-list">
-                            <a href="javascript:void(0);" class="nav-link right-bar-toggle">
-                                <i class="dripicons-gear noti-icon"></i>
-                            </a>
-                        </li>
-    
-                    </ul>
-    
-                    <ul class="list-inline menu-left mb-0">
-                        <li class="float-left">
-                            <a href="dashboard.php" class="logo">
-                                <span class="logo-lg">
-                                    <img src="assets/images/logo.png" alt="" height="20">
-                                </span>
-                                <span class="logo-sm">
-                                    <img src="assets/images/logo_sm.png" alt="" height="28">
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-            </nav>
-            <!-- end topbar-main -->
-
-            <div class="topbar-menu">
-                <div class="container-fluid">
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-
-                            <li class="has-submenu">
-                                <a href="dashboard.php"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-key"></i>Keys</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="create_key.php">Create a key</a></li>
-                                            <li><a href="key_manager.php">Key Manager</a></li>     
-                                            <li><a href="product_manager.php">Manage Products</a></li>                
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-account-box"></i>Users</a>
-                                <ul class="submenu">
-                                    <li><a href="manage_users.php">Manage Users</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-comment-question-outline"></i>Support</a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="request_support.php">Request support</a>
-                                    </li> 
-                                    <li>
-                                        <a href="support_requests.php">Your support requests</a>
-                                    </li>      
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-account-multiple"></i>Groups</a>
-                                <ul class="submenu">
-                                    <li><a href="group_invites.php">Group invites</a></li>
-                                    <li><a href="create_group.php">Create a group</a></li>
-                                    <li><a href="manage_group.php">Manage your group</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <!-- End navigation menu -->
-
-                        <div class="clearfix"></div>
-                    </div> <!-- end #navigation -->
-                </div> <!-- end container -->
-            </div> <!-- end navbar-custom -->
-        </header>
+        <?php
+            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/navbar.php';
+            echo $nav_bar;
+        ?>
         <!-- End Navigation Bar-->
 
         <!-- Error Modal -->
@@ -313,84 +203,17 @@
 
 
         <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="dripicons-cross noti-icon"></i>
-                </a>
-                <h5 class="m-0">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <!-- User box -->
-                <div class="user-box">
-                    <div class="user-img">
-                        <img id="dashboard_profile_picture" src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
-                        <a href="" class="user-edit"><i class="mdi mdi-pencil"></i></a>
-                    </div>
-                    
-                    <h5><a href="#" id="dashboard_username_1">Agnes Kennedy</a> </h5>
-                    <p class="text-muted mb-0" id="dashboard_rank"><small>Admin Head</small></p>
-                </div>
-
-                <!-- Timeline -->
-                </div>
-        </div>
+        <?php
+            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/right_sidebar.php';
+            echo $right_bar;
+        ?>
         <!-- /Right-bar -->
 
 
-        <!-- jQuery  -->
-        <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-
-        <!-- KNOB JS -->
-        <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
-        <!-- Chart JS -->
-        <script src="assets/libs/chart.js/Chart.bundle.min.js"></script>
-
-        <!-- Jvector map -->
-        <script src="assets/libs/jqvmap/jquery.vmap.min.js"></script>
-        <script src="assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
-
-        <!-- Datatable js -->
-        <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-
-        <!-- Dashboard Init JS -->
-        <script src="assets/js/jquery.dashboard.js"></script>
-
-        <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
-
-        <!-- select2 js -->
-        <script src="assets/libs/select2/js/select2.min.js"></script>
-        <script src="assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-        <script src="assets/libs/mohithg-switchery/switchery.min.js"></script>
-        <script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-        <!-- Mask input -->
-        <script src="assets/libs/jquery-mask-plugin/jquery.mask.min.js"></script>
-        <!-- Bootstrap Select -->
-        <script src="assets/libs/bootstrap-select/js/bootstrap-select.min.js"></script>
-
-        <script src="assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-
-        <script src="assets/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-
-        <script src="assets/libs/moment/moment.js"></script>
-
-        <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-
-        <script src="assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-        <!-- Init Js file -->
-        <script src="assets/js/jquery.form-advanced.js"></script>
-
-        <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <?php
+            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/js_include.php';
+            echo $js;
+        ?>
 
 
         <script>
