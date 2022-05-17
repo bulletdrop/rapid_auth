@@ -515,7 +515,7 @@
 
     //This is the end of the part for every website
 
-    if (uid_in_group(get_cookie_information()[2]) && isset($_POST["submit"]))
+    if (check_cookie() && uid_in_group(get_cookie_information()[2]) && isset($_POST["submit"]))
     {
         $gid = get_gid_by_uid(get_cookie_information()[2]);
         $product_name = $_POST["product"];
@@ -536,8 +536,31 @@
             insert_key_in_db($gid, $key_name, $product_id, $lifetime, $freezed, $days_left);
             echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
         }
-        
-        
+    }
+
+    if (check_cookie() && uid_in_group(get_cookie_information()[2]) && isset($_POST["submit_mass"]))
+    {
+        $gid = get_gid_by_uid(get_cookie_information()[2]);
+        $product_name = $_POST["product_mass"];
+        $product_id = get_product_index_by_name($gid, $product_name);
+        $freezed = 0;
+        $lifetime = 0;
+        $days_left = $_POST["days_left_mass"];
+        $key_name = $_POST["key_name_mass"];
+        $seperator = $_POST["seperator"];
+
+        if ($_POST["freezed_mass"] == "on")
+            $freezed = 1;
+
+        if ($_POST["lifetime_mass"] == "on")
+            $lifetime = 1;
+
+        if ($product_id != "-1")
+        {
+            foreach (explode($seperator, $key_name) as $key)
+                insert_key_in_db($gid, $key, $product_id, $lifetime, $freezed, $days_left);
+            echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
+        }
     }
     
 
