@@ -481,6 +481,7 @@
                     break;
                 default:
                     insert_invite_in_db($invited_member_uid, $gid); 
+                    echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/manage_group.php";</script>';
                     break;
             }
         }

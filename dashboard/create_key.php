@@ -210,8 +210,27 @@
                                     <label class="col-sm-2 col-form-label">Select a product<span class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <select name="product" class="form-control">
-                                            <option>Test Product</option>
-                                            <option>Test Product 2</option>
+                                            <?php
+                                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+                                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
+                                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
+                                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+                                                
+                
+                                                if (!uid_in_group(get_cookie_information()[2]))
+                                                {
+                                                    echo '<script>error_msg("You\'re not in a group")</script>';   
+                                                    
+                                                }
+                                                else
+                                                {
+                                                    $gid = get_gid_by_uid(get_cookie_information()[2]);
+                                                    foreach (get_products_by_gid($gid) as $product)
+                                                    {
+                                                        echo '<option>' . $product . '</option>';
+                                                    }
+                                                }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>        

@@ -192,7 +192,7 @@
                                 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
                                 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
                                 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/get_keys.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/keys.php';
 
 
                                 if (!uid_in_group(get_cookie_information()[2]))
@@ -458,7 +458,7 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/get_stats.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/get_keys.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/keys.php';
 
     //This Part should be on every dashboard site expect login and sign up 
     if (!check_cookie())
@@ -493,6 +493,7 @@
         $gid = get_gid_by_uid(get_cookie_information()[2]);
         update_key($gid, $_POST["submit"], $_POST["loader_user_uid"], $_POST["days_left"], $freezed, $lifetime, $_POST["key_name"]);
         unset($_POST["submit"]);
+        echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
     }
 
 ?>
