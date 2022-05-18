@@ -159,7 +159,7 @@
                                     <div class="card-box">
                                         <h4 class="m-t-0 header-title">Member</h4>
                                         <button onclick="open_invite_modal()" type="button" class="btn btn-primary w-md">Invite</button>
-                                        <table class="table table-striped mb-0">
+                                        <table style="margin-top: 1em;" class="table table-striped mb-0">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -176,7 +176,12 @@
                                             }
                                     echo  '</tbody>
                                         </table>
+                                        <div style="margin-top: 2em;" class="form-group row">
+                                            <label class="col-sm-2 col-form-label">API Key</label>
+                                            <div class="col-sm-8"><input type="text" disabled class="form-control" value="' . get_api_key_by_gid($gid) . '"></div>
+                                        </div>
                                     </div> <!-- end card-box -->
+                                        
                                 </div>
                                     ';
                                 }

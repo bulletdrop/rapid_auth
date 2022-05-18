@@ -81,6 +81,7 @@ CREATE TABLE `dashboard_groups` (
   `owner_uid` int(11) DEFAULT NULL,
   `group_name` varchar(255) DEFAULT NULL,
   `products_array` varchar(1000) DEFAULT '',
+  `api_key` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`gid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -91,7 +92,7 @@ CREATE TABLE `dashboard_groups` (
 
 LOCK TABLES `dashboard_groups` WRITE;
 /*!40000 ALTER TABLE `dashboard_groups` DISABLE KEYS */;
-INSERT INTO `dashboard_groups` VALUES (1,'[5,1,3]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\"]'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]');
+INSERT INTO `dashboard_groups` VALUES (1,'[5,1,3]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\"]','Wx8fwxHJocduHVuy1JeohT280XcYO9EZ727DkNDodHqElJhEa9q0d6IuPhjSNv9i'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA');
 /*!40000 ALTER TABLE `dashboard_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,8 +213,10 @@ CREATE TABLE `loader_users` (
   `cpu_name_attempt` varchar(500) DEFAULT NULL,
   `cpu_cores_attempt` int(11) DEFAULT NULL,
   `os_caption_attempt` varchar(500) DEFAULT NULL,
-  `os_serials_number_attempt` varchar(500) DEFAULT NULL,
+  `os_serial_number_attempt` varchar(500) DEFAULT '',
   `last_ip_attempt` varchar(255) DEFAULT NULL,
+  `note` longtext DEFAULT NULL,
+  `failed_hwid_attempt` int(11) DEFAULT 0,
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -224,7 +227,7 @@ CREATE TABLE `loader_users` (
 
 LOCK TABLES `loader_users` WRITE;
 /*!40000 ALTER TABLE `loader_users` DISABLE KEYS */;
-INSERT INTO `loader_users` VALUES (1,1,'PNIWgYKhvY5EGg==','Dt4XhqmOqY5SH5YJrw==',1,'[1,3]','LdIKlpmJu6JUG5wJpTDJ2Q==','HcsRrZifpZh+CQ==','S45UwsbO',5,'CMIel5je/Q==',8,'LdIKlpmJu90QWNlN/xPNyA==','NvAluKW0g7wZKYof8zD3hA==','127.0.0.1',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `loader_users` VALUES (1,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3]','FN4TrbeJoZNFB44IlCTX2VnOjsk=','FN4TrZGOvaJPCZQe','500000',3,'FN4TrZWOvaJPCZQe',5,'FN4TrZmNl55AGI0SpD8=','FN4TrZmNl45EGpAapw7KyUbNhd4=','192.168.1.1',1,'FN4TrbeJoZNFB44IlCTX2VnOjsk=','FN4TrZGOvaJPCZQe','500000',3,'FN4TrZWOvaJPCZQe',5,'FN4TrZmNl55AGI0SpD8=','FN4TrZmNl45EGpAapw7KyUbNhd4=','192.168.1.1','Cool note',0);
 /*!40000 ALTER TABLE `loader_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-18 16:00:34
+-- Dump completed on 2022-05-18 22:07:54

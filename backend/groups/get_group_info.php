@@ -75,5 +75,20 @@ function get_member_array_by_gid($gid)
     return "-1";
 }
 
+function get_api_key_by_gid($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT api_key FROM dashboard_groups WHERE gid=?");
+    $statement->execute(array($gid));  
+    
+    while($row = $statement->fetch()) {
+        return $row["api_key"];
+    }
+    
+    return "-1";
+}
+
 
 ?>

@@ -69,7 +69,7 @@
                                     <th>Username</th>
                                     <th>Last IP Address</th>
                                     <th>Active</th>
-                                    <th>Products</th>
+                                    <th>Password</th>
                                 </tr>
                                 </thead>
 
@@ -110,7 +110,7 @@
                                         else
                                             echo '<td>Yes</td>';
                                         
-                                        //Products
+                                        /*Products
                                         $product_array = array();
                                         foreach (json_decode($user[4]) as $product)
                                         {
@@ -121,23 +121,22 @@
                                             get_days_left_by_kid_and_gid($product, $gid)));
                                         }
                                         
-                                        echo '<td>';
                                         
-                                        //foreach ($product_array as $product)
-                                        //{
-                                            //$key_name = $product[2];
-                                            //echo '<br>Key ID: ' . $product[0] . ' Product Name: ' . $product[1] . ' Key: ' . $key_name . ' Days left: ' . $product[3] .'<br>';
-                                        //}
-                                        echo '</td>';
-
-                                        //echo '<td>' . $user[4] . '<button style="margin-left: 1em;" data-toggle="modal" data-target=".key_editor_modal_id' . $user[0] . '" type="button" class="btn btn-primary w-md">Edit</button></td>';
                                         
+                                        foreach ($product_array as $product)
+                                        {
+                                            $key_name = $product[2];
+                                            echo 'Key ID: ' . $product[0] . '<br>Product Name: ' . $product[1] . '<br>Key: ' . $key_name . '<br>Days left: ' . $product[3] .'<br>';
+                                            echo '----------------------------<br>';
+                                        }
+                                        */
+                                        echo '<td>' . $user[2] . '<button style="margin-left: 1em;" data-toggle="modal" data-target=".user_editor_modal_id' . $user[0] . '" type="button" class="btn btn-primary w-md">Edit</button></td></td>';
                                         echo '</tr>';
 
 
-                                        /*
+                                        
                                         echo '
-                                        <div class="modal fade key_editor_modal_id' . $key[0] . '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                                        <div class="modal fade user_editor_modal_id' . $user[0] . '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -145,56 +144,134 @@
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <!-- Modal Body start-->
-                                                    <form method="post">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">Key</label>
-                                                            <div class="col-sm-10"> <input type="text" name="key_name" class="form-control" value="' . $key[1] . '"> </div>
+                                                    <div class="card-box">
+                                                        <ul class="nav nav-tabs tabs-bordered nav-justified">
+                                                        <li class="nav-item">
+                                                            <a href="#last_hwid_attempt" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                Last HWID Attempt
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="#user_profile" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                                User Profile
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="#current_hwid" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                                Current HWID
+                                                            </a>
+                                                        </li>
+                                                        </ul>
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active show" id="last_hwid_attempt">
+                                                            <dl class="row">';
+
+                                                            if (hwid_failed($user[0], $gid))
+                                                            echo '
+                                                                <dt class="col-sm-6">Windows Username</dt>
+                                                                    <dd class="col-sm-6">' . $user[15] . '</dd>
+                            
+                                                                    <dt class="col-sm-6">GPU Name</dt>
+                                                                    <dd class="col-sm-6">' . $user[16] . '</dd>
+
+                                                                    <dt class="col-sm-6">GPU RAM</dt>
+                                                                    <dd class="col-sm-6">' . $user[17] . '</dd>
+
+                                                                    <dt class="col-sm-6">Drive count</dt>
+                                                                    <dd class="col-sm-6">' . $user[18] . '</dd>
+
+                                                                    <dt class="col-sm-6">CPU Name</dt>
+                                                                    <dd class="col-sm-6">' . $user[19] . '</dd>
+
+                                                                    <dt class="col-sm-6">CPU Cores</dt>
+                                                                    <dd class="col-sm-6">' . $user[20] . '</dd>
+
+                                                                    <dt class="col-sm-6">OS Caption</dt>
+                                                                    <dd class="col-sm-6">' . $user[21] . '</dd>
+
+                                                                    <dt class="col-sm-6">OS Serial Number</dt>
+                                                                    <dd class="col-sm-6">' . $user[22] . '</dd>
+
+                                                                    <dt class="col-sm-6">Last IP Address</dt>
+                                                                    <dd class="col-sm-6">' . $user[23] . '</dd>
+                                                                </dl>
+                                                                <form method="post">
+                                                                <button name="submit_hwid" type="submit" value="' . $user[0] . '" class="btn btn-primary w-md">Set new HWID</button>
+                                                                </form>
+                                                                ';
+                                                            else
+                                                                echo '<dt class="col-sm-6">No failed HWID Attempt</dt></dt></dl>';
+                                                            echo '</div>
+                                                            <div class="tab-pane" id="user_profile">
+                                                                <form method="post">
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Username</label>
+                                                                        <div class="col-sm-10"> <input type="text" name="username" class="form-control" value="' . $user[1] . '"> </div>
+                                                                    </div>
+            
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Password</label>
+                                                                        <div class="col-sm-10"> <input type="text" name="password" class="form-control" value="' . $user[2] . '"> </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Note</label>
+                                                                        <div class="col-sm-10"><textarea name="note" class="form-control" rows="5">' . $user[24] . '</textarea></div>
+                                                                    </div>
+                                                                    
+            
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Active</label>
+                                                                        <div class="col-sm-10"> <input name="active"';
+                                                                    
+                                                                    if ($user[3] == "1")    
+                                                                        echo " checked";
+
+                                                                    echo  ' type="checkbox" data-plugin="switchery" data-color="#039cfd"/></div>
+                                                                    </div>
+
+                                                                    <button name="submit" type="submit" value="' . $user[0] . '" class="btn btn-primary w-md">Save</button>
+                                                                </form>
+                                                            </div>
+                                                            <div class="tab-pane" id="current_hwid">
+                                                                <dl class="row">
+                                                                    <dt class="col-sm-6">Windows Username</dt>
+                                                                    <dd class="col-sm-6">' . $user[5] . '</dd>
+                            
+                                                                    <dt class="col-sm-6">GPU Name</dt>
+                                                                    <dd class="col-sm-6">' . $user[6] . '</dd>
+
+                                                                    <dt class="col-sm-6">GPU RAM</dt>
+                                                                    <dd class="col-sm-6">' . $user[7] . '</dd>
+
+                                                                    <dt class="col-sm-6">Drive count</dt>
+                                                                    <dd class="col-sm-6">' . $user[8] . '</dd>
+
+                                                                    <dt class="col-sm-6">CPU Name</dt>
+                                                                    <dd class="col-sm-6">' . $user[9] . '</dd>
+
+                                                                    <dt class="col-sm-6">CPU Cores</dt>
+                                                                    <dd class="col-sm-6">' . $user[10] . '</dd>
+
+                                                                    <dt class="col-sm-6">OS Caption</dt>
+                                                                    <dd class="col-sm-6">' . $user[11] . '</dd>
+
+                                                                    <dt class="col-sm-6">OS Serial Number</dt>
+                                                                    <dd class="col-sm-6">' . $user[12] . '</dd>
+
+                                                                    <dt class="col-sm-6">Last IP Address</dt>
+                                                                    <dd class="col-sm-6">' . $user[13] . '</dd>
+                                                                </dl>
+                                                            </div>
                                                         </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">Loader UID (-1 is no owner)</label>
-                                                            <div class="col-sm-10"> <input type="number" name="loader_user_uid" class="form-control" value="' . $key[2] . '"> </div>
-                                                        </div>
-                                                        
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">Days left</label>
-                                                            <div class="col-sm-10"> <input type="number" name="days_left" class="form-control" value="' . $key[4] .'"> </div>
-                                                        </div>
-                                                        
-
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">Freezed</label>
-                                                            <div class="col-sm-10"> <input name="freezed" type="checkbox"';
-                                                        
-                                                        
-                                                        if ($key[5] != 0)
-                                                            echo ' checked ';
-
-                                                        echo 'data-plugin="switchery" data-color="#039cfd"/></div>
-                                                        </div>
-
-
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">Lifetime</label>
-                                                            <div class="col-sm-10"> <input name="lifetime" type="checkbox"';
-                                                            
-                                                        if ($key[6] != 0)
-                                                            echo ' checked ';
-
-                                                        echo 'data-plugin="switchery" data-color="#039cfd"/></div>
-                                                        </div>
-                                                        <button name="submit" type="submit" value="'.$key[0].'" class="btn btn-primary w-md">Save</button>
-                                                    </form>
+                                                    </div>
                                                         
                                                     <!-- Modal Body end-->
                                                     </div>
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
-                                        </div>
                                         ';
-                                        */
                                         
                                     }
                                 }
@@ -275,6 +352,8 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/get_stats.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/keys.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/loader_users/l_users.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
     //This Part should be on every dashboard site expect login and sign up 
     if (!check_cookie())
@@ -293,6 +372,31 @@
 
     echo '<script>document.getElementById("dashboard_profile_picture_1").src = "' . $dashboard_profile_picture_url . '";</script>';
 
-    //This is the end of the part for every website
+    //This is the end of the part for every website,
+    $gid = get_gid_by_uid(get_cookie_information()[2]);
+    if (uid_in_group($gid))
+    {
+        if (isset($_POST["submit"]))
+        {
+            $post_username = encrypt_data($_POST["username"], $key);
+            $post_password = encrypt_data($_POST["password"], $key);
+            $post_note = $_POST["note"];
+            $post_active = false;
+            if ($_POST["active"] == "on")
+                $post_active = true;
+            
+            if (strlen($post_username) > 0 && strlen($post_password) > 0)
+                update_user_by_uuid_and_gid($_POST["submit"], $gid, $post_username, $post_password, $post_note, $post_active);
+            echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/manage_users.php";</script>';
+        }
+
+        if (isset($_POST["submit_hwid"]))
+        {
+            set_attempt_hwid_as_new_hwid_by_gid_and_uuid($gid, $_POST["submit_hwid"]);
+            //echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/manage_users.php";</script>';
+        }
+    }
+    
+
 
 ?>
