@@ -168,7 +168,7 @@ CREATE TABLE `loader_keys` (
   `lifetime` int(11) DEFAULT 0,
   `key_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`kid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +177,7 @@ CREATE TABLE `loader_keys` (
 
 LOCK TABLES `loader_keys` WRITE;
 /*!40000 ALTER TABLE `loader_keys` DISABLE KEYS */;
-INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,1,1,'Dt4XhqmVrYR+A5wC'),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC');
+INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,1,1,'Dt4XhqmVrYR+A5wC'),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC'),(3,1,-1,2,30,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE='),(4,1,-1,2,30,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg='),(5,1,-1,2,30,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc='),(6,1,-1,2,30,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY='),(7,1,-1,2,30,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4='),(8,1,-1,2,30,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A='),(9,1,-1,2,30,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE='),(10,1,-1,2,30,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY='),(11,1,-1,2,30,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4='),(12,1,-1,2,30,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0=');
 /*!40000 ALTER TABLE `loader_keys` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,8 +205,17 @@ CREATE TABLE `loader_users` (
   `os_serial_number` varchar(500) DEFAULT NULL,
   `last_ip` varchar(255) DEFAULT NULL,
   `active_hwid` int(11) DEFAULT 0 COMMENT '0 = if the user never logged in, 1 = if the user has logged in and hwid is set',
+  `windows_username_attempt` varchar(500) DEFAULT NULL,
+  `gpu_name_attempt` varchar(500) DEFAULT NULL,
+  `gpu_ram_attempt` varchar(500) DEFAULT NULL,
+  `drive_count_attempt` int(11) DEFAULT NULL,
+  `cpu_name_attempt` varchar(500) DEFAULT NULL,
+  `cpu_cores_attempt` int(11) DEFAULT NULL,
+  `os_caption_attempt` varchar(500) DEFAULT NULL,
+  `os_serials_number_attempt` varchar(500) DEFAULT NULL,
+  `last_ip_attempt` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,6 +224,7 @@ CREATE TABLE `loader_users` (
 
 LOCK TABLES `loader_users` WRITE;
 /*!40000 ALTER TABLE `loader_users` DISABLE KEYS */;
+INSERT INTO `loader_users` VALUES (1,1,'PNIWgYKhvY5EGg==','Dt4XhqmOqY5SH5YJrw==',1,'0','LdIKlpmJu6JUG5wJpTDJ2Q==','HcsRrZifpZh+CQ==','S45UwsbO',5,'CMIel5je/Q==',8,'LdIKlpmJu90QWNlN/xPNyA==','NvAluKW0g7wZKYof8zD3hA==','127.0.0.1',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `loader_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-16 22:12:07
+-- Dump completed on 2022-05-18  9:17:56
