@@ -96,35 +96,46 @@
                                     foreach ($users as $user)
                                     {
                                         echo '<tr>';
-                                        //Key ID
-                                        echo '<td>' . $key[0] . '</td>';
-                                        //Loader UID -1 means no owner
-                                        if ($key[2] == "-1")
-                                            echo '<td>None</td>';
-                                        else
-                                            echo '<td>' . $key[2] . '</td>';
-                                        //Product Name 
-                                        echo '<td>' . get_product_name_by_index($gid, $key[3]) . '</td>';
-                                        // Days left
-                                        echo '<td>' . $key[4] . '</td>';
-                                        // Freezed
-                                        if ($key[5] == 0)
-                                            echo '<td>No</td>';
-                                        else
-                                            echo '<td>Yes</td>';
-
-                                        //Lifetime
-                                        if ($key[6] == 0)
+                                        //UUID
+                                        echo '<td>' . $user[0] . '</td>';
+                                        
+                                        
+                                        //Username 
+                                        echo '<td>' . $user[1] . '</td>';
+                                        //Last IP Address
+                                        echo '<td>' . $user[13] . '</td>';
+                                        //Active
+                                        if ($user[3] == 0)
                                             echo '<td>No</td>';
                                         else
                                             echo '<td>Yes</td>';
                                         
-                                        //The key
-                                        echo '<td>' . $key[1] . '<button style="margin-left: 1em;" data-toggle="modal" data-target=".key_editor_modal_id' . $key[0] . '" type="button" class="btn btn-primary w-md">Edit</button></td>';
+                                        //Products
+                                        $product_array = array();
+                                        foreach (json_decode($user[4]) as $product)
+                                        {
+                                            array_push($product_array, 
+                                            array($product,
+                                            get_product_name_by_kid_and_gid($product, $gid),
+                                            get_key_name_by_kid_and_gid($product, $gid),
+                                            get_days_left_by_kid_and_gid($product, $gid)));
+                                        }
+                                        
+                                        echo '<td>';
+                                        
+                                        //foreach ($product_array as $product)
+                                        //{
+                                            //$key_name = $product[2];
+                                            //echo '<br>Key ID: ' . $product[0] . ' Product Name: ' . $product[1] . ' Key: ' . $key_name . ' Days left: ' . $product[3] .'<br>';
+                                        //}
+                                        echo '</td>';
+
+                                        //echo '<td>' . $user[4] . '<button style="margin-left: 1em;" data-toggle="modal" data-target=".key_editor_modal_id' . $user[0] . '" type="button" class="btn btn-primary w-md">Edit</button></td>';
+                                        
                                         echo '</tr>';
 
 
-
+                                        /*
                                         echo '
                                         <div class="modal fade key_editor_modal_id' . $key[0] . '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
@@ -183,6 +194,7 @@
                                             </div><!-- /.modal-dialog -->
                                         </div>
                                         ';
+                                        */
                                         
                                     }
                                 }

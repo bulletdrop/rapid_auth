@@ -33,4 +33,53 @@ function insert_key_in_db($gid, $key_name, $product_id, $lifetime, $freezed, $da
     $statement->execute(array($gid, $product_id, $days_left, $freezed, $lifetime, encrypt_data($key_name, $key)));
 }
 
+function get_days_left_by_kid_and_gid($kid, $gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT days_left FROM loader_keys WHERE owner_gid=? AND kid=?");
+    $statement->execute(array($gid, $kid));  
+    
+    while($row = $statement->fetch()) {
+        return $row["days_left"];
+    }
+    
+    return "0";
+}
+
+function get_key_name_by_kid_and_gid($kid, $gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+
+    $statement = $pdo->prepare("SELECT key_name FROM loader_keys WHERE owner_gid=? AND kid=?");
+    $statement->execute(array($gid, $kid));  
+    
+    while($row = $statement->fetch()) {
+        return decrypt_data($row["key_name"], $key);
+    }
+    
+    return "0";
+}
+
+function get_product_name_by_kid_and_gid($kid, $gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+
+    $statement = $pdo->prepare("SELECT product_id FROM loader_keys WHERE owner_gid=? AND kid=?");
+    $statement->execute(array($gid, $kid));  
+    
+    while($row = $statement->fetch()) {
+        return get_product_name_by_index($gid, $row["product_id"]);
+    }
+    
+    return "0";
+}
+
 ?>

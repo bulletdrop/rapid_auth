@@ -37,7 +37,7 @@ function get_loader_users_by_gid($gid)
         array_push($users, array(
             $row["uuid"],
             decrypt_data($row["username"], $key),
-            decrypt_data($row["passwrd"], $key),
+            decrypt_data($row["password"], $key),
             $row["active"],
             $row["key_array"],
             decrypt_data($row["windows_username"], $key),
