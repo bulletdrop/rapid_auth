@@ -79,10 +79,8 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-                                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/group_invites.php';
-                                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
                                         include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+                                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
 
                                         foreach (get_group_invites_by_uid(get_cookie_information()[2]) as $group_invite)
                                         {
@@ -167,10 +165,8 @@
 
 <?php
     // error_reporting(0);
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/get_stats.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
 
     //This Part should be on every dashboard site expect login and sign up 
     if (!check_cookie())

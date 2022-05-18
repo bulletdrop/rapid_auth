@@ -123,10 +123,8 @@
 </html>
 
 <?php
-
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/create_user.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/security/cookies.php';
+include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
 
 if (isset($_POST["submit"]))
 {

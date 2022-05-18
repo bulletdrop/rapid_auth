@@ -51,7 +51,6 @@ function get_days_left_by_kid_and_gid($kid, $gid)
 function get_key_name_by_kid_and_gid($kid, $gid)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
 
@@ -68,7 +67,6 @@ function get_key_name_by_kid_and_gid($kid, $gid)
 function get_product_name_by_kid_and_gid($kid, $gid)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
 

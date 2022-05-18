@@ -1,7 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
 
 if (check_cookie())
 {
@@ -34,7 +33,6 @@ function kick_group_array($gid, $uid)
 {
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
 
     $current_array = json_decode(get_member_array_by_gid($gid));
     

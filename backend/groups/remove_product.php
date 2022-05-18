@@ -1,8 +1,7 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
 
 if (check_cookie())
 {
@@ -26,7 +25,7 @@ function update_product_array($product_index, $gid)
 {
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
+    
     $current_products = get_products_by_gid($gid);
     unset($current_products[$product_index]);
     $new_products_array = json_encode(array_values($current_products));

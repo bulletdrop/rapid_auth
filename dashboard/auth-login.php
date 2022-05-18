@@ -107,8 +107,8 @@
 
 <?php
     error_reporting(0);
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
 
     try 
     {

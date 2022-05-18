@@ -38,7 +38,7 @@ CREATE TABLE `dashboard_group_invites` (
 
 LOCK TABLES `dashboard_group_invites` WRITE;
 /*!40000 ALTER TABLE `dashboard_group_invites` DISABLE KEYS */;
-INSERT INTO `dashboard_group_invites` VALUES (1,1,1,0,1),(2,1,0,0,-1),(3,1,1,0,3),(4,1,1,0,3);
+INSERT INTO `dashboard_group_invites` VALUES (1,1,0,1,1),(2,1,0,0,-1),(3,1,1,0,3),(4,1,0,0,3);
 /*!40000 ALTER TABLE `dashboard_group_invites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,7 @@ CREATE TABLE `dashboard_groups` (
 
 LOCK TABLES `dashboard_groups` WRITE;
 /*!40000 ALTER TABLE `dashboard_groups` DISABLE KEYS */;
-INSERT INTO `dashboard_groups` VALUES (1,'[5,1,3]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\"]','Wx8fwxHJocduHVuy1JeohT280XcYO9EZ727DkNDodHqElJhEa9q0d6IuPhjSNv9i'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA');
+INSERT INTO `dashboard_groups` VALUES (1,'[5,1]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\"]','Wx8fwxHJocduHVuy1JeohT280XcYO9EZ727DkNDodHqElJhEa9q0d6IuPhjSNv9i'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA');
 /*!40000 ALTER TABLE `dashboard_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +148,7 @@ CREATE TABLE `dashboard_users` (
 
 LOCK TABLES `dashboard_users` WRITE;
 /*!40000 ALTER TABLE `dashboard_users` DISABLE KEYS */;
-INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1);
+INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1);
 /*!40000 ALTER TABLE `dashboard_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +169,7 @@ CREATE TABLE `loader_keys` (
   `lifetime` int(11) DEFAULT 0,
   `key_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`kid`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +178,7 @@ CREATE TABLE `loader_keys` (
 
 LOCK TABLES `loader_keys` WRITE;
 /*!40000 ALTER TABLE `loader_keys` DISABLE KEYS */;
-INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,1,1,'Dt4XhqmVrYR+A5wC'),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC'),(3,1,-1,2,30,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE='),(4,1,-1,2,30,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg='),(5,1,-1,2,30,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc='),(6,1,-1,2,30,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY='),(7,1,-1,2,30,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4='),(8,1,-1,2,30,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A='),(9,1,-1,2,30,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE='),(10,1,-1,2,30,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY='),(11,1,-1,2,30,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4='),(12,1,-1,2,30,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0=');
+INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,1,1,'Dt4XhqmVrYR+A5wC'),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC'),(3,1,-1,2,30,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE='),(4,1,-1,2,30,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg='),(5,1,-1,2,30,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc='),(6,1,-1,2,30,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY='),(7,1,-1,2,30,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4='),(8,1,-1,2,30,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A='),(9,1,-1,2,30,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE='),(10,1,-1,2,30,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY='),(11,1,-1,2,30,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4='),(12,1,-1,2,30,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0='),(13,1,-1,2,36,0,0,'NfY2os/T/s9yWshW+gjo+2+CtupNrcEeU/2aFEnG5QgmFJ8='),(14,1,-1,2,36,0,0,'Q/JRtrPTgrYXWstWkR2X8GSCpeo1t7MeL+XocTnGmQROBZY='),(15,1,-1,2,36,0,0,'Q/IhqKLTmbFoO8lWghSchGSC2JxP0rMeI/ycdj7GlB9KCpk='),(16,1,-1,2,36,0,0,'L/guts/T+r5kMa5W+hzn5HuCsOJKpbEeVv3rGkrG6RQqEJE='),(17,1,-1,2,36,0,0,'QvwrvcPTgaxjX8lWg2mc5X2Co5Uvt8geU/yUGT3GlQ1ZbZg=');
 /*!40000 ALTER TABLE `loader_keys` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +227,7 @@ CREATE TABLE `loader_users` (
 
 LOCK TABLES `loader_users` WRITE;
 /*!40000 ALTER TABLE `loader_users` DISABLE KEYS */;
-INSERT INTO `loader_users` VALUES (1,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3]','FN4TrbeJoZNFB44IlCTX2VnOjsk=','FN4TrZGOvaJPCZQe','500000',3,'FN4TrZWOvaJPCZQe',5,'FN4TrZmNl55AGI0SpD8=','FN4TrZmNl45EGpAapw7KyUbNhd4=','192.168.1.1',1,'FN4TrbeJoZNFB44IlCTX2VnOjsk=','FN4TrZGOvaJPCZQe','500000',3,'FN4TrZWOvaJPCZQe',5,'FN4TrZmNl55AGI0SpD8=','FN4TrZmNl45EGpAapw7KyUbNhd4=','192.168.1.1','Cool note',0);
+INSERT INTO `loader_users` VALUES (1,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3]','FN4TrbeJoZNFB44IlCTX2VnOjsk=','FN4TrZGOvaJPCZQe','500000',3,'FN4TrZWOvaJPCZQe',5,'FN4TrZmNl55AGI0SpD8=','FN4TrZmNl45EGpAapw7KyUbNhd4=','192.168.1.1',1,'FN4TrbeJoZNFB44IlCTX2VnOjsk=','FN4TrZGOvaJPCZQe','500000',3,'FN4TrZWOvaJPCZQe',5,'FN4TrZmNl55AGI0SpD8=','FN4TrZmNl45EGpAapw7KyUbNhd4=','192.168.1.1','New Cool note',0);
 /*!40000 ALTER TABLE `loader_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-18 22:27:18
+-- Dump completed on 2022-05-18 22:46:00

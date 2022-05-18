@@ -373,13 +373,8 @@
 <?php
     // error_reporting(0);
     
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/get_stats.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/keys.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/loader_users/l_users.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
 
     //This Part should be on every dashboard site expect login and sign up 
     if (!check_cookie())

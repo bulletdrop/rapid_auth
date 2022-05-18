@@ -13,7 +13,6 @@ function add_cookie($username, $password, $uid)
 
 function check_cookie()
 {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
@@ -42,7 +41,6 @@ function check_cookie()
 
 function get_cookie_information()
 {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 

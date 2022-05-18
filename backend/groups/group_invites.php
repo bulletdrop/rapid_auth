@@ -3,7 +3,6 @@
 function get_group_invites_by_uid($uid)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
     $statement = $pdo->prepare("SELECT id, gid, accepted, declined FROM dashboard_group_invites WHERE uid= ? AND accepted=0 AND declined=0");

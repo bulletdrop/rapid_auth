@@ -13,9 +13,9 @@ echo '<script>window.location.href = "../../dashboard/group_invites.php";</scrip
 
 function accept_invite()
 {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+
 
     if (!check_cookie())
         echo '<script>window.location.href = "../../dashboard/auth-login.php";</script>';
@@ -60,7 +60,6 @@ function remove_from_group($gid, $uid)
 {
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
 
     $current_array = json_decode(get_member_array_by_gid($gid));
     
@@ -86,7 +85,6 @@ function update_group_array($gid, $uid)
 {
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
 
     $current_array = json_decode(get_member_array_by_gid($gid));
     

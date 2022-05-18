@@ -16,7 +16,6 @@ function check_if_invite_exist($uid, $gid)
 
 function check_if_allready_in_same_group($gid, $uid)
 {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
