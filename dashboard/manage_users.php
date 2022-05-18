@@ -201,6 +201,21 @@
                                                                 ';
                                                             else
                                                                 echo '<dt class="col-sm-6">No failed HWID Attempt</dt></dt></dl>';
+                                                            
+                                                            $product_array = array();
+                                                            foreach (json_decode($user[4]) as $product)
+                                                            {
+                                                                array_push($product_array, 
+                                                                array($product,
+                                                                get_product_name_by_kid_and_gid($product, $gid),
+                                                                get_key_name_by_kid_and_gid($product, $gid),
+                                                                get_days_left_by_kid_and_gid($product, $gid)));
+                                                            }
+                                                            
+                                                            
+                                                            
+                                                            
+
                                                             echo '</div>
                                                             <div class="tab-pane" id="user_profile">
                                                                 <form method="post">
@@ -228,8 +243,19 @@
                                                                         echo " checked";
 
                                                                     echo  ' type="checkbox" data-plugin="switchery" data-color="#039cfd"/></div>
-                                                                    </div>
+                                                                    </div>';
 
+                                                                    $product_counter = 1;
+                                                                    foreach ($product_array as $product)
+                                                                    {
+                                                                        echo '<div class="form-group row">
+                                                                        <label class="col-sm-2 col-form-label">Product ' . $product_counter . '</label>';
+                                                                        echo '<div class="col-sm-10">Key ID: ' . $product[0] . '<br>Product Name: ' . $product[1] . '<br>Key: ' . $product[2] . '<br>Days left: ' . $product[3] .'<br></div>';
+                                                                        echo '</div>';
+                                                                        $product_counter++;
+                                                                    }
+                                                                    
+                                                                    echo '
                                                                     <button name="submit" type="submit" value="' . $user[0] . '" class="btn btn-primary w-md">Save</button>
                                                                 </form>
                                                             </div>
@@ -393,7 +419,7 @@
         if (isset($_POST["submit_hwid"]))
         {
             set_attempt_hwid_as_new_hwid_by_gid_and_uuid($gid, $_POST["submit_hwid"]);
-            //echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/manage_users.php";</script>';
+            echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/manage_users.php";</script>';
         }
     }
     
