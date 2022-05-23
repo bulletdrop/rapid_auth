@@ -109,8 +109,9 @@ CREATE TABLE `dashboard_support_ticket` (
   `message_history` longtext DEFAULT NULL COMMENT 'This should be a json array that includes the message and the uid of the owner who send the message, answers from supportes should also be in this array ',
   `owner_uid` int(11) DEFAULT 0,
   `stauts` int(11) DEFAULT 0 COMMENT '0 = Waiting for answer; 1 = answered',
+  `department` int(11) DEFAULT NULL,
   PRIMARY KEY (`tid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,6 +120,7 @@ CREATE TABLE `dashboard_support_ticket` (
 
 LOCK TABLES `dashboard_support_ticket` WRITE;
 /*!40000 ALTER TABLE `dashboard_support_ticket` DISABLE KEYS */;
+INSERT INTO `dashboard_support_ticket` VALUES (1,'New request','[{\"from\":\"bullet\",\"date\":\"23.05.2022 09:47\",\"message\":\"This is a new support request\"}]',1,0,3);
 /*!40000 ALTER TABLE `dashboard_support_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,4 +269,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-18 22:46:00
+-- Dump completed on 2022-05-23  9:48:02
