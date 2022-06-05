@@ -1,5 +1,4 @@
 <?php
-
 function get_js()
 {
     $content = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/dashboard_js.txt');
@@ -23,6 +22,40 @@ function get_total_users()
     }
     
     return $last_10_stats;
+}
+
+function get_total_users_last_record()
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+    
+    
+    $statement = $pdo->prepare("SELECT total_users FROM `statistics` ORDER BY id DESC LIMIT 1");
+    $statement->execute(array(0));   
+    $total_users = 0;
+    
+    while($row = $statement->fetch()) {
+        $total_users = $row["total_users"];
+    }
+    
+    return $total_users;
+}
+
+function get_total_keys_last_record()
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+    
+    
+    $statement = $pdo->prepare("SELECT total_keys FROM `statistics` ORDER BY id DESC LIMIT 1");
+    $statement->execute(array(0));   
+    $total_keys = 0;
+    
+    while($row = $statement->fetch()) {
+        $total_keys = $row["total_keys"];
+    }
+    
+    return $total_keys;
 }
 
 function get_total_keys()

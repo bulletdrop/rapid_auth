@@ -22,4 +22,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/group_invites
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/loader_users/l_users.php';
 
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/support/support_requests.php';
+
 ?>

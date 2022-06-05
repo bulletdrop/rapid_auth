@@ -6,7 +6,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
 if (check_cookie())
 {
-    if (strlen($_POST["support_message"] > 1))
+    if (strlen($_POST["support_message"]) > 1)
     {
         insert_request_in_db(); 
         echo '<script>window.location.href = "../../dashboard/dashboard.php";</script>';

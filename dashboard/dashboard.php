@@ -67,7 +67,7 @@
                         <div class="card-box">
                             <h4 class="header-title">Totals Users</h4>
                             <div class="mb-3 mt-4">
-                                <h2 class="font-weight-light">500</h2>
+                                <h2 id="total_users_id" class="font-weight-light">500</h2>
                             </div>
                             <div class="chartjs-chart dash-sales-chart">
                                 <canvas id="user-chart"></canvas>
@@ -81,7 +81,7 @@
                         <div class="card-box">
                             <h4 class="header-title">Totals Keys</h4>
                             <div class="mb-3 mt-4">
-                                <h2 class="font-weight-light">400</h2>
+                                <h2 id="total_keys_id" class="font-weight-light">400</h2>
                             </div>
                             <div class="chartjs-chart dash-sales-chart">
                                 <canvas id="key-chart"></canvas>
@@ -158,6 +158,10 @@
     //This is the end of the part for every website
 
     echo '<script>document.getElementById("message_of_the_day").innerHTML = "Hello ' . $dashboard_username . ', thanks for signing up!	&#128640;";</script>';
+
+    echo '<script>document.getElementById("total_users_id").innerHTML = "' . get_total_users_last_record() . '";</script>';
+
+    echo '<script>document.getElementById("total_keys_id").innerHTML = "' . get_total_keys_last_record() . '";</script>';
 
     echo get_js();
 
