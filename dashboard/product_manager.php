@@ -117,6 +117,26 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
+        <!-- Compensate Time for Product Modal -->
+        <div class="modal fade compensate_time_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="mySmallModalLabel">Compensate Time</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <form method="post" id="add_time_form" action="../backend/groups/compensate_time_for_product.php">
+                        <div class="modal-body">
+                            <label>Days to compensate</label>
+                            <input name="days_to_add" type="number" min="1" max="9999" required="" class="form-control">
+                        </div>
+                        <button type="submit" name="submit" name="product_id" id="add_time" type="button" class="btn btn-success w-md">Compensate</button>
+                    </form>
+                    
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
 
 
         <div class="wrapper">
@@ -166,7 +186,8 @@
                                         <th>' . $i .'</th>
                                         <td>' . $product . '</td>
                                         <td><button onclick="confirm_remove(' .$i . ')" type="button" class="btn btn-danger w-md">Remove</button>
-                                        
+                                        <button onclick="compensate_time(' . $i . ')" type="button" class="btn btn-primary w-md">Compensate Time</button>
+                                        <button type="button" class="btn btn-primary w-md">Freeze</button></td>
                                         </tr>';
                                         $i++;
                                     }
@@ -232,8 +253,14 @@
 
             function confirm_remove(id)
             {
-                document.getElementById("kick_button").onclick = function confirm_kick() {window.location.href = "../backend/groups/remove_product.php?confirmed=yes&id=" + id};
-                $(".remove_product_modal").modal();
+                
+            }
+
+            function compensate_time(id)
+            {
+                document.getElementById("add_time").value = id;
+                document.getElementById("add_time_form").action = "../backend/groups/compensate_time_for_product.php?product_id=" + id;
+                $(".compensate_time_modal").modal();
             }
         </script>
     </body>
