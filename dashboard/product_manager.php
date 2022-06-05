@@ -138,6 +138,41 @@
         </div><!-- /.modal -->
 
 
+        <!-- Freeze keys for product Modal -->
+        <div class="modal fade freeze_product" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure ?
+                        
+                    </div>
+                    <a id="freeze_keys"><button type="button" class="btn btn-success w-md">Yes</button></a>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+         <!-- Unfreeze keys for product Modal -->
+         <div class="modal fade unfreeze_product" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure ?
+                        
+                    </div>
+                    <a id="unfreeze_keys"><button type="button" class="btn btn-success w-md">Yes</button></a>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
 
         <div class="wrapper">
             <div class="container-fluid">
@@ -187,7 +222,8 @@
                                         <td>' . $product . '</td>
                                         <td><button onclick="confirm_remove(' .$i . ')" type="button" class="btn btn-danger w-md">Remove</button>
                                         <button onclick="compensate_time(' . $i . ')" type="button" class="btn btn-primary w-md">Compensate Time</button>
-                                        <button type="button" class="btn btn-primary w-md">Freeze</button></td>
+                                        <button onclick="freeze_keys_modal(' . $i . ')" type="button" class="btn btn-primary w-md">Freeze</button>
+                                        <button onclick="unfreeze_keys_modal(' . $i . ')" type="button" class="btn btn-success w-md">Unfreeze</button></td>
                                         </tr>';
                                         $i++;
                                     }
@@ -254,6 +290,18 @@
             function confirm_remove(id)
             {
                 
+            }
+
+            function freeze_keys_modal(id)
+            {
+                document.getElementById("freeze_keys").href = "../backend/groups/freeze_product_keys.php?product_id=" + id;
+                $(".freeze_product").modal();
+            }
+
+            function unfreeze_keys_modal(id)
+            {
+                document.getElementById("unfreeze_keys").href = "../backend/groups/unfreeze_product_keys.php?product_id=" + id;
+                $(".unfreeze_product").modal();
             }
 
             function compensate_time(id)
