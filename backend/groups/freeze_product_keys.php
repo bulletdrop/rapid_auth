@@ -20,7 +20,7 @@ function update_keys($product_id, $gid)
 {
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
-    $statement = $pdo->prepare("UPDATE loader_keys SET freezed = 1 WHERE product_id=? AND owner_gid=? AND days_left > 0 AND freezed=0;");
+    $statement = $pdo->prepare("UPDATE loader_keys SET freezed = 1, product_freezed=1 WHERE product_id=? AND owner_gid=? AND days_left > 0 AND freezed=0;");
     $statement->execute(array($product_id, $gid));
 }
 ?>

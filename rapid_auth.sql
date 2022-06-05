@@ -108,7 +108,7 @@ CREATE TABLE `dashboard_support_ticket` (
   `title` varchar(500) DEFAULT NULL,
   `message_history` longtext DEFAULT NULL COMMENT 'This should be a json array that includes the message and the uid of the owner who send the message, answers from supportes should also be in this array ',
   `owner_uid` int(11) DEFAULT 0,
-  `stauts` int(11) DEFAULT 0 COMMENT '0 = Waiting for answer; 1 = answered',
+  `status` int(11) DEFAULT 0 COMMENT '0 = Waiting for answer; 1 = answered',
   `department` int(11) DEFAULT NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
@@ -120,7 +120,7 @@ CREATE TABLE `dashboard_support_ticket` (
 
 LOCK TABLES `dashboard_support_ticket` WRITE;
 /*!40000 ALTER TABLE `dashboard_support_ticket` DISABLE KEYS */;
-INSERT INTO `dashboard_support_ticket` VALUES (1,'New request','[{\"from\":\"bullet\",\"date\":\"23.05.2022 09:47\",\"message\":\"This is a new support request\"}]',1,0,3);
+INSERT INTO `dashboard_support_ticket` VALUES (1,'New request','[{\"from\":\"bullet\",\"date\":\"23.05.2022 09:47\",\"message\":\"This is a new support request\"},{\"from\":\"support\",\"date\":\"05.05.2022 09:47\",\"message\":\"This is a new support answer\"},{\"from\":\"bullet\",\"date\":\"05.06.2022 02:52\",\"message\":\"Hello, I need help\"}]',1,0,3);
 /*!40000 ALTER TABLE `dashboard_support_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +150,7 @@ CREATE TABLE `dashboard_users` (
 
 LOCK TABLES `dashboard_users` WRITE;
 /*!40000 ALTER TABLE `dashboard_users` DISABLE KEYS */;
-INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1);
+INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','127.0.0.1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1);
 /*!40000 ALTER TABLE `dashboard_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,6 +170,7 @@ CREATE TABLE `loader_keys` (
   `freezed` int(11) DEFAULT 0,
   `lifetime` int(11) DEFAULT 0,
   `key_name` varchar(255) DEFAULT NULL,
+  `product_freezed` int(11) DEFAULT 0,
   PRIMARY KEY (`kid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -180,7 +181,7 @@ CREATE TABLE `loader_keys` (
 
 LOCK TABLES `loader_keys` WRITE;
 /*!40000 ALTER TABLE `loader_keys` DISABLE KEYS */;
-INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,1,1,'Dt4XhqmVrYR+A5wC'),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC'),(3,1,-1,2,30,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE='),(4,1,-1,2,30,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg='),(5,1,-1,2,30,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc='),(6,1,-1,2,30,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY='),(7,1,-1,2,30,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4='),(8,1,-1,2,30,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A='),(9,1,-1,2,30,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE='),(10,1,-1,2,30,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY='),(11,1,-1,2,30,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4='),(12,1,-1,2,30,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0='),(13,1,-1,2,36,0,0,'NfY2os/T/s9yWshW+gjo+2+CtupNrcEeU/2aFEnG5QgmFJ8='),(14,1,-1,2,36,0,0,'Q/JRtrPTgrYXWstWkR2X8GSCpeo1t7MeL+XocTnGmQROBZY='),(15,1,-1,2,36,0,0,'Q/IhqKLTmbFoO8lWghSchGSC2JxP0rMeI/ycdj7GlB9KCpk='),(16,1,-1,2,36,0,0,'L/guts/T+r5kMa5W+hzn5HuCsOJKpbEeVv3rGkrG6RQqEJE='),(17,1,-1,2,36,0,0,'QvwrvcPTgaxjX8lWg2mc5X2Co5Uvt8geU/yUGT3GlQ1ZbZg=');
+INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,0,1,'Dt4XhqmVrYR+A5wC',0),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC',0),(3,1,-1,2,39,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE=',0),(4,1,-1,2,40,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg=',0),(5,1,-1,2,40,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc=',0),(6,1,-1,2,40,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY=',0),(7,1,-1,2,40,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4=',0),(8,1,-1,2,40,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A=',0),(9,1,-1,2,40,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE=',0),(10,1,-1,2,40,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY=',0),(11,1,-1,2,40,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4=',0),(12,1,-1,2,40,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0=',0),(13,1,-1,2,46,0,0,'NfY2os/T/s9yWshW+gjo+2+CtupNrcEeU/2aFEnG5QgmFJ8=',0),(14,1,-1,2,46,0,0,'Q/JRtrPTgrYXWstWkR2X8GSCpeo1t7MeL+XocTnGmQROBZY=',0),(15,1,-1,2,46,0,0,'Q/IhqKLTmbFoO8lWghSchGSC2JxP0rMeI/ycdj7GlB9KCpk=',0),(16,1,-1,2,46,0,0,'L/guts/T+r5kMa5W+hzn5HuCsOJKpbEeVv3rGkrG6RQqEJE=',0),(17,1,-1,2,46,0,0,'QvwrvcPTgaxjX8lWg2mc5X2Co5Uvt8geU/yUGT3GlQ1ZbZg=',0);
 /*!40000 ALTER TABLE `loader_keys` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-23  9:48:02
+-- Dump completed on 2022-06-05 16:13:02
