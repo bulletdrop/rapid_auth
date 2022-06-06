@@ -7,6 +7,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_inf
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
 
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/logs.php';
+
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/products.php';
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/authenticate_user.php';

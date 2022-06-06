@@ -92,7 +92,7 @@ CREATE TABLE `dashboard_groups` (
 
 LOCK TABLES `dashboard_groups` WRITE;
 /*!40000 ALTER TABLE `dashboard_groups` DISABLE KEYS */;
-INSERT INTO `dashboard_groups` VALUES (1,'[5,1]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\"]','Wx8fwxHJocduHVuy1JeohT280XcYO9EZ727DkNDodHqElJhEa9q0d6IuPhjSNv9i'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA');
+INSERT INTO `dashboard_groups` VALUES (1,'[5,1]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\",\"test2_produkt\"]','Wx8fwxHJocduHVuy1JeohT280XcYO9EZ727DkNDodHqElJhEa9q0d6IuPhjSNv9i'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA');
 /*!40000 ALTER TABLE `dashboard_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +120,7 @@ CREATE TABLE `dashboard_support_ticket` (
 
 LOCK TABLES `dashboard_support_ticket` WRITE;
 /*!40000 ALTER TABLE `dashboard_support_ticket` DISABLE KEYS */;
-INSERT INTO `dashboard_support_ticket` VALUES (1,'New request','[{\"from\":\"bullet\",\"date\":\"23.05.2022 09:47\",\"message\":\"This is a new support request\"},{\"from\":\"support\",\"date\":\"05.05.2022 09:47\",\"message\":\"This is a new support answer\"},{\"from\":\"bullet\",\"date\":\"05.06.2022 02:52\",\"message\":\"Hello, I need help\"}]',1,0,3);
+INSERT INTO `dashboard_support_ticket` VALUES (1,'New request','[{\"from\":\"bullet\",\"date\":\"23.05.2022 09:47\",\"message\":\"This is a new support request\"},{\"from\":\"support\",\"date\":\"05.05.2022 09:47\",\"message\":\"This is a new support answer\"},{\"from\":\"bullet\",\"date\":\"05.06.2022 02:52\",\"message\":\"Hello, I need help\"},{\"from\":\"bullet\",\"date\":\"05.06.2022 09:36\",\"message\":\"test\"}]',1,0,3);
 /*!40000 ALTER TABLE `dashboard_support_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +221,7 @@ CREATE TABLE `loader_users` (
   `note` longtext DEFAULT NULL,
   `failed_hwid_attempt` int(11) DEFAULT 0,
   PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,8 +230,33 @@ CREATE TABLE `loader_users` (
 
 LOCK TABLES `loader_users` WRITE;
 /*!40000 ALTER TABLE `loader_users` DISABLE KEYS */;
-INSERT INTO `loader_users` VALUES (1,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3]','FN4TrbeJoZNFB44IlCTX2VnOjsk=','FN4TrZGOvaJPCZQe','500000',3,'FN4TrZWOvaJPCZQe',5,'FN4TrZmNl55AGI0SpD8=','FN4TrZmNl45EGpAapw7KyUbNhd4=','192.168.1.1',1,'FN4TrbeJoZNFB44IlCTX2VnOjsk=','FN4TrZGOvaJPCZQe','500000',3,'FN4TrZWOvaJPCZQe',5,'FN4TrZmNl55AGI0SpD8=','FN4TrZmNl45EGpAapw7KyUbNhd4=','192.168.1.1','New Cool note',0);
+INSERT INTO `loader_users` VALUES (1,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','::1',1,'ENoHmZ0=','KO880sXO/w==','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','192.168.1.1','New Cool note',1),(3,1,'GM4InpOK6Q==','PNIKnMfM+8kASQ==',1,'0','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','::1',1,'ENoHmZ0=','KO880sXO/w==','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,NULL,1),(4,1,'GM4InpOK6dw=','PNIKnMfM+8kASdg=',1,'0','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,0);
 /*!40000 ALTER TABLE `loader_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logs` (
+  `lid` int(11) NOT NULL AUTO_INCREMENT,
+  `message` longtext DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`lid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logs`
+--
+
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+INSERT INTO `logs` VALUES (1,'Hello World','06.06.2022 11:52'),(2,'User bullet!! signed up\nFor GID: 1','06.06.2022 11:53');
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -270,4 +295,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-05 16:13:02
+-- Dump completed on 2022-06-06 11:57:28
