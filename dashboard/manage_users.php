@@ -110,60 +110,41 @@
                                         else
                                             echo '<td>Yes</td>';
                                         
-                                        /*Products
-                                        $product_array = array();
-                                        foreach (json_decode($user[4]) as $product)
-                                        {
-                                            array_push($product_array, 
-                                            array($product,
-                                            get_product_name_by_kid_and_gid($product, $gid),
-                                            get_key_name_by_kid_and_gid($product, $gid),
-                                            get_days_left_by_kid_and_gid($product, $gid)));
-                                        }
                                         
-                                        
-                                        
-                                        foreach ($product_array as $product)
-                                        {
-                                            $key_name = $product[2];
-                                            echo 'Key ID: ' . $product[0] . '<br>Product Name: ' . $product[1] . '<br>Key: ' . $key_name . '<br>Days left: ' . $product[3] .'<br>';
-                                            echo '----------------------------<br>';
-                                        }
-                                        */
                                         echo '<td>' . $user[2] . '<button style="margin-left: 1em;" data-toggle="modal" data-target=".user_editor_modal_id' . $user[0] . '" type="button" class="btn btn-primary w-md">Edit</button></td></td>';
                                         echo '</tr>';
 
 
                                         
                                         echo '
-                                        <div class="modal fade user_editor_modal_id' . $user[0] . '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                                        <div class="modal fade user_editor_modal_id' . $user[0] . '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel' . $user[0] . '" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title" id="myLargeModalLabel">Key Editor</h4>
+                                                        <h4 class="modal-title" id="myLargeModalLabel' . $user[0] . '">Key Editor</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                     </div>
                                                     <div class="modal-body">
                                                     <div class="card-box">
                                                         <ul class="nav nav-tabs tabs-bordered nav-justified">
                                                         <li class="nav-item">
-                                                            <a href="#last_hwid_attempt" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                            <a href="#last_hwid_attempt' . $user[0] . '" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                                 Last HWID Attempt
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a href="#user_profile" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                            <a href="#user_profile' . $user[0] . '" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                                                 User Profile
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a href="#current_hwid" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                            <a href="#current_hwid' . $user[0] . '" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                                 Current HWID
                                                             </a>
                                                         </li>
                                                         </ul>
                                                         <div class="tab-content">
-                                                            <div class="tab-pane active show" id="last_hwid_attempt">
+                                                            <div class="tab-pane active show" id="last_hwid_attempt' . $user[0] . '">
                                                             <dl class="row">';
 
                                                             if (hwid_failed($user[0], $gid))
@@ -203,21 +184,26 @@
                                                                 echo '<dt class="col-sm-6">No failed HWID Attempt</dt></dt></dl>';
                                                             
                                                             $product_array = array();
-                                                            foreach (json_decode($user[4]) as $product)
+                                                            if ($user[4] != "0")
                                                             {
-                                                                array_push($product_array, 
-                                                                array($product,
-                                                                get_product_name_by_kid_and_gid($product, $gid),
-                                                                get_key_name_by_kid_and_gid($product, $gid),
-                                                                get_days_left_by_kid_and_gid($product, $gid)));
+                                                                foreach (json_decode($user[4]) as $product)
+                                                                {
+                                                                    array_push($product_array, 
+                                                                    array($product,
+                                                                    get_product_name_by_kid_and_gid($product, $gid),
+                                                                    get_key_name_by_kid_and_gid($product, $gid),
+                                                                    get_days_left_by_kid_and_gid($product, $gid)));
+                                                                }
                                                             }
+                                                                
+                                                            
                                                             
                                                             
                                                             
                                                             
 
                                                             echo '</div>
-                                                            <div class="tab-pane" id="user_profile">
+                                                            <div class="tab-pane" id="user_profile' . $user[0] . '">
                                                                 <form method="post">
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-2 col-form-label">Username</label>
@@ -259,7 +245,7 @@
                                                                     <button name="submit" type="submit" value="' . $user[0] . '" class="btn btn-primary w-md">Save</button>
                                                                 </form>
                                                             </div>
-                                                            <div class="tab-pane" id="current_hwid">
+                                                            <div class="tab-pane" id="current_hwid' . $user[0] . '">
                                                                 <dl class="row">
                                                                     <dt class="col-sm-6">Windows Username</dt>
                                                                     <dd class="col-sm-6">' . $user[5] . '</dd>
