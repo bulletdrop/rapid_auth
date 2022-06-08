@@ -1,4 +1,6 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
 $nav_bar = ' <header id="topnav">
 <nav class="navbar-custom">
 
@@ -104,6 +106,10 @@ $nav_bar = ' <header id="topnav">
                         <li><a href="create_group.php">Create a group</a></li>
                         <li><a href="manage_group.php">Manage your group</a></li>
                     </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="' . $discord_invite . '"><i class="mdi mdi-discord"></i>Discord Server</a>
                 </li>
             </ul>
             <!-- End navigation menu -->
