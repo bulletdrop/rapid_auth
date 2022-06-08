@@ -400,6 +400,7 @@
         if (isset($_POST["submit_hwid"]))
         {
             set_attempt_hwid_as_new_hwid_by_gid_and_uuid($gid, $_POST["submit_hwid"]);
+            write_log("User: " . $dashboard_username. " updated HWID for user: " . $post_username);
             echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/manage_users.php";</script>';
         }
     }

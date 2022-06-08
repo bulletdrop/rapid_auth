@@ -350,6 +350,7 @@
         if ($product_id != "-1")
         {
             insert_key_in_db($gid, $key_name, $product_id, $lifetime, $freezed, $days_left);
+            write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
             echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
         }
     }
@@ -374,7 +375,11 @@
         if ($product_id != "-1")
         {
             foreach (explode($seperator, $key_name) as $key)
+            {
                 insert_key_in_db($gid, $key, $product_id, $lifetime, $freezed, $days_left);
+                write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
+            }
+                
             echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
         }
     }

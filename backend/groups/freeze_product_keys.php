@@ -8,7 +8,7 @@ if (check_cookie())
     $product_id = $_GET["product_id"];
     $uid = get_cookie_information()[2];
     $gid = get_gid_by_uid($uid);
-
+    write_log("User: " . get_username_by_uid($uid) . " freezed all keys for product ID " . $product_id);
     update_keys($product_id, $gid);
     echo '<script>window.location.href = "../../dashboard/dashboard.php";</script>';
 

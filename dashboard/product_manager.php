@@ -351,6 +351,7 @@
             {
                 $gid = get_gid_by_uid(get_cookie_information()[2]);
                 add_product($gid, $_POST["new_product_name"]);
+                write_log("User: " . $dashboard_username . " created a new product: " . $_POST["new_product_name"]);
                 unset($_REQUEST);
                 echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/product_manager.php";</script>';
             }

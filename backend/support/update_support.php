@@ -14,6 +14,8 @@ if (check_cookie())
     {
         $new_ticket_json = create_new_array($new_message, $uid);
         update_current_ticket($_GET["tid"], $uid, $new_ticket_json);
+
+        write_log("User: " . get_username_by_uid($uid) . " updated support ticket with id: " . $_GET["tid"] . " and message: " . $new_message, true);
     }
 }
 

@@ -16,6 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `banned_ips`
+--
+
+DROP TABLE IF EXISTS `banned_ips`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `banned_ips` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `banned_ips`
+--
+
+LOCK TABLES `banned_ips` WRITE;
+/*!40000 ALTER TABLE `banned_ips` DISABLE KEYS */;
+/*!40000 ALTER TABLE `banned_ips` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `dashboard_group_invites`
 --
 
@@ -181,7 +204,7 @@ CREATE TABLE `loader_keys` (
 
 LOCK TABLES `loader_keys` WRITE;
 /*!40000 ALTER TABLE `loader_keys` DISABLE KEYS */;
-INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,0,1,'Dt4XhqmVrYR+A5wC',0),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC',0),(3,1,-1,2,39,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE=',0),(4,1,-1,2,40,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg=',0),(5,1,-1,2,40,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc=',0),(6,1,-1,2,40,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY=',0),(7,1,-1,2,40,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4=',0),(8,1,-1,2,40,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A=',0),(9,1,-1,2,40,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE=',0),(10,1,-1,2,40,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY=',0),(11,1,-1,2,40,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4=',0),(12,1,-1,2,40,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0=',0),(13,1,-1,2,46,0,0,'NfY2os/T/s9yWshW+gjo+2+CtupNrcEeU/2aFEnG5QgmFJ8=',0),(14,1,-1,2,46,0,0,'Q/JRtrPTgrYXWstWkR2X8GSCpeo1t7MeL+XocTnGmQROBZY=',0),(15,1,-1,2,46,0,0,'Q/IhqKLTmbFoO8lWghSchGSC2JxP0rMeI/ycdj7GlB9KCpk=',0),(16,1,-1,2,46,0,0,'L/guts/T+r5kMa5W+hzn5HuCsOJKpbEeVv3rGkrG6RQqEJE=',0),(17,1,-1,2,46,0,0,'QvwrvcPTgaxjX8lWg2mc5X2Co5Uvt8geU/yUGT3GlQ1ZbZg=',0);
+INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,0,1,'Dt4XhqmVrYR+A5wC',0),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC',0),(3,1,3,2,39,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE=',0),(4,1,1,2,40,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg=',0),(5,1,-1,2,40,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc=',0),(6,1,-1,2,40,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY=',0),(7,1,-1,2,40,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4=',0),(8,1,-1,2,40,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A=',0),(9,1,-1,2,40,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE=',0),(10,1,-1,2,40,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY=',0),(11,1,-1,2,40,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4=',0),(12,1,-1,2,40,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0=',0),(13,1,-1,2,46,0,0,'NfY2os/T/s9yWshW+gjo+2+CtupNrcEeU/2aFEnG5QgmFJ8=',0),(14,1,1,2,46,0,0,'Q/JRtrPTgrYXWstWkR2X8GSCpeo1t7MeL+XocTnGmQROBZY=',0),(15,1,1,2,46,0,0,'Q/IhqKLTmbFoO8lWghSchGSC2JxP0rMeI/ycdj7GlB9KCpk=',0),(16,1,1,2,46,0,0,'L/guts/T+r5kMa5W+hzn5HuCsOJKpbEeVv3rGkrG6RQqEJE=',0),(17,1,1,2,46,0,0,'QvwrvcPTgaxjX8lWg2mc5X2Co5Uvt8geU/yUGT3GlQ1ZbZg=',0);
 /*!40000 ALTER TABLE `loader_keys` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +244,7 @@ CREATE TABLE `loader_users` (
   `note` longtext DEFAULT NULL,
   `failed_hwid_attempt` int(11) DEFAULT 0,
   PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +253,7 @@ CREATE TABLE `loader_users` (
 
 LOCK TABLES `loader_users` WRITE;
 /*!40000 ALTER TABLE `loader_users` DISABLE KEYS */;
-INSERT INTO `loader_users` VALUES (1,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','::1',1,'ENoHmZ0=','KO880sXO/w==','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','192.168.1.1','New Cool note',1),(3,1,'GM4InpOK6Q==','PNIKnMfM+8kASQ==',1,'0','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','::1',1,'ENoHmZ0=','KO880sXO/w==','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,NULL,1),(4,1,'GM4InpOK6dw=','PNIKnMfM+8kASdg=',1,'0','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,0);
+INSERT INTO `loader_users` VALUES (1,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3,4,17,16,15,14]','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','123','test',0),(3,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3,4,17,16,15,14]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','192.168.1.1','New Cool note',1),(4,1,'GM4InpOK6dw=','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(5,1,'GM4InpOK6dwA','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(6,1,'GM4InpOK6dwASQ==','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(7,1,'GM4InpOK','PNIKnMfM+8kA',1,'0','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(8,1,'Dt4XhqmLu5hTN40euCX7yE7clA==','OM4InpOM+c8SXNg=',1,'0','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1);
 /*!40000 ALTER TABLE `loader_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +269,7 @@ CREATE TABLE `logs` (
   `message` longtext DEFAULT NULL,
   `date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`lid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +278,7 @@ CREATE TABLE `logs` (
 
 LOCK TABLES `logs` WRITE;
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
-INSERT INTO `logs` VALUES (1,'Hello World','06.06.2022 11:52'),(2,'User bullet!! signed up\nFor GID: 1','06.06.2022 11:53');
+INSERT INTO `logs` VALUES (1,'Hello World','06.06.2022 11:52'),(2,'User bullet!! signed up\nFor GID: 1','06.06.2022 11:53'),(3,'User bullet!!! signed up\nFor GID: 1','06.06.2022 11:58'),(4,'User bullet!!!! signed up\nFor GID: 1','06.06.2022 11:59'),(5,'User bullet signed up\nFor GID: 1','06.06.2022 11:21'),(6,'User new_user_test signed up\nFor GID: 1','06.06.2022 11:41'),(7,'User test_user_test_test signed up\nFor GID: 1','06.06.2022 11:42');
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-06 11:57:28
+-- Dump completed on 2022-06-08 12:31:44

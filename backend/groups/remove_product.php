@@ -11,6 +11,7 @@ if (check_cookie())
         $gid = get_gid_by_uid($uid);
         if (get_group_owner_uid_by_gid($gid) == $uid)
         {
+            write_log("User: " . get_username_by_uid($uid) . " deleted product", true);
             update_product_array($_GET["id"], $gid);
             echo '<script>window.location.href = "../../dashboard/product_manager.php";</script>';
         }

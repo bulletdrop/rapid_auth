@@ -10,6 +10,7 @@ if (check_cookie())
         $gid = get_gid_by_uid($uid);
         if (get_group_owner_uid_by_gid($gid) == $uid)
         {
+            write_log("User: " . get_username_by_uid($uid) . " kicked " . get_username_by_uid($_GET["uid"]) . " from group", true);
             update_user_table_gid($_GET["id"], $gid);
             kick_group_array($gid, $_GET["id"]);
             echo '<script>window.location.href = "../../dashboard/dashboard.php";</script>';
