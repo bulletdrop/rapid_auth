@@ -47,7 +47,7 @@ function uid_matches_username($username, $uid)
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
-    $statement = $pdo->prepare("SELECT email FROM dashboard_users WHERE username= ? AND uid= ?");
+    $statement = $pdo->prepare("SELECT email FROM dashboard_users WHERE username= ? AND uid= ? AND banned=0");
     $statement->execute(array(encrypt_data($username, $key), $uid)); 
     
     if ($statement->rowCount() == 0)
@@ -151,6 +151,35 @@ function get_last_ip_by_uid($uid)
     }
     
     return "-1";
+}
+
+function get_ban_message_by_username($username)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT ban_message FROM dashboard_users WHERE username= ?");
+    $statement->execute(array(encrypt_data($username, $key)));   
+    while($row = $statement->fetch()) {
+        return $row["ban_message"];
+    }
+    
+    return "-1";
+}
+
+function user_is_not_banned($username)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT banned FROM dashboard_users WHERE username=?");
+    $statement->execute(array(encrypt_data($username, $key)));   
+    while($row = $statement->fetch()) {
+        if ($row["banned"] == "0")
+            return false;
+    }
+    
+    return true;
 }
 
 

@@ -124,6 +124,9 @@
             case (strlen($post_password) > 4 && strlen($post_username) > 3):
                 echo '<script>showError("Input too short")</script>';
                 break;
+            case (!user_is_not_banned($post_username)):
+                echo '<script>showError("You are banned<br>Reason: ' . get_ban_message_by_username($post_username) . '")</script>';
+                break;
             case (!valid_input($post_username, $post_password)):
                 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
                 update_last_ip($post_username);
