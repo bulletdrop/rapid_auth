@@ -34,7 +34,7 @@ function insert_request_in_db()
     $statement = $pdo->prepare("INSERT INTO dashboard_support_ticket (title, message_history, owner_uid, department) VALUES (?, ?, ?, ?);");
     $statement->execute(array($support_title, $json_array, $cookie_uid, $support_department));
 
-    write_log("User: " . get_username_by_uid($cookie_uid) . " created support ticket with title: " . $support_title . " and message: " . $support_message, true);
+    write_log("User: " . get_username_by_uid($cookie_uid) . "\ncreated support ticket with title: " . $support_title . "\nand message: " . $support_message, true);
 
 }
 ?>

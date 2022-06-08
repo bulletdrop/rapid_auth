@@ -1,8 +1,8 @@
 <?php
 function write_log($message, $send_to_webhook = false, $warning = false)
 {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_api/includes.php';
-    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_api/config.php'; 
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php'; 
 
     $current_date = date("d.m.Y h:i");
 
@@ -19,18 +19,18 @@ function write_log($message, $send_to_webhook = false, $warning = false)
 
 function write_log_in_db($message, $date)
 {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_api/includes.php';
-    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_api/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
     //$statement = $pdo->prepare("UPDATE loader_users SET windows_username = ?, gpu_name = ?, gpu_ram = ?, drive_count = ?, cpu_name = ?, cpu_cores = ?, os_caption = ?, os_serial_number = ?, active_hwid = 1;");
     $statement = $pdo->prepare("INSERT INTO logs (`message`, `date`) VALUES (?, ?);");
-    $statement->execute(array($message, $date));
+    $statement->execute(array(str_replace("\n", "<br>", $message), $date));
 }
 
 function send_to_webhook($message, $date)
 {
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_api/includes.php';
-    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_api/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
     $url = $webhook_url;
     $hookObject = json_encode([
