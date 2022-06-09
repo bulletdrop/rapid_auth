@@ -58,7 +58,25 @@
 
                 <div class="card-box">
                     <h1>Message of the day</h1>
-                    <p id="message_of_the_day">Hello user, thanks for signing up!	&#128640;</p>
+                    <p id="message_of_the_day">
+
+                    <?php   
+                        include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+                    
+                        if (!check_cookie())
+                            echo '<script>window.location.href = "auth-login.php";</script>';
+                        else
+                        {
+                            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/dashboard/message_of_the_day.php';
+                            $dashboard_username = get_cookie_information()[0];
+                            echo str_replace("{username}", $dashboard_username,  get_message_of_the_day());
+                        }
+                            
+                        
+                        
+                    ?>
+                    </p>
                 </div> <!-- end card-box-->
 
                 </div> <!-- end col -->
@@ -134,9 +152,9 @@
 </html>
 
 <?php
-    // error_reporting(0);
-    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    error_reporting(0);
+    //include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+    //include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
 
     //This Part should be on every dashboard site expect login and sign up 
     if (!check_cookie())
@@ -156,8 +174,6 @@
     echo '<script>document.getElementById("dashboard_profile_picture_1").src = "' . $dashboard_profile_picture_url . '";</script>';
 
     //This is the end of the part for every website
-
-    echo '<script>document.getElementById("message_of_the_day").innerHTML = "Hello ' . $dashboard_username . ', thanks for signing up!	&#128640;";</script>';
 
     echo '<script>document.getElementById("total_users_id").innerHTML = "' . get_total_users_last_record() . '";</script>';
 
