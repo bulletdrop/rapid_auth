@@ -115,8 +115,32 @@ CREATE TABLE `dashboard_groups` (
 
 LOCK TABLES `dashboard_groups` WRITE;
 /*!40000 ALTER TABLE `dashboard_groups` DISABLE KEYS */;
-INSERT INTO `dashboard_groups` VALUES (1,'[5,1]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\",\"test2_produkt\"]','Wx8fwxHJocduHVuy1JeohT280XcYO9EZ727DkNDodHqElJhEa9q0d6IuPhjSNv9i'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA');
+INSERT INTO `dashboard_groups` VALUES (1,'[6,1,4]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\",\"test_product\"]','3XXQuGVFy6l8iVBTkHCIsK2DJgYzC5c1B2vtPrue3A9yUPo60WnIZkWCWt2FeuJB'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA');
 /*!40000 ALTER TABLE `dashboard_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dashboard_settings`
+--
+
+DROP TABLE IF EXISTS `dashboard_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dashboard_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `message_of_the_day` varchar(1000) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dashboard_settings`
+--
+
+LOCK TABLES `dashboard_settings` WRITE;
+/*!40000 ALTER TABLE `dashboard_settings` DISABLE KEYS */;
+INSERT INTO `dashboard_settings` VALUES (1,'Hello {username},\r\nwe hope you enjoy Rapid Auth');
+/*!40000 ALTER TABLE `dashboard_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -143,7 +167,7 @@ CREATE TABLE `dashboard_support_ticket` (
 
 LOCK TABLES `dashboard_support_ticket` WRITE;
 /*!40000 ALTER TABLE `dashboard_support_ticket` DISABLE KEYS */;
-INSERT INTO `dashboard_support_ticket` VALUES (1,'New request','[{\"from\":\"bullet\",\"date\":\"23.05.2022 09:47\",\"message\":\"This is a new support request\"},{\"from\":\"support\",\"date\":\"05.05.2022 09:47\",\"message\":\"This is a new support answer\"},{\"from\":\"bullet\",\"date\":\"05.06.2022 02:52\",\"message\":\"Hello, I need help\"},{\"from\":\"bullet\",\"date\":\"05.06.2022 09:36\",\"message\":\"test\"}]',1,0,3),(2,'test','[{\"from\":\"bullet\",\"date\":\"08.06.2022 01:48\",\"message\":\"test\"}]',1,0,1),(3,'Test','[{\"from\":\"bullet\",\"date\":\"08.06.2022 01:58\",\"message\":\"test\"}]',1,0,1);
+INSERT INTO `dashboard_support_ticket` VALUES (1,'New request','[{\"from\":\"bullet\",\"date\":\"23.05.2022 09:47\",\"message\":\"This is a new support request\"},{\"from\":\"support\",\"date\":\"05.05.2022 09:47\",\"message\":\"This is a new support answer\"},{\"from\":\"bullet\",\"date\":\"05.06.2022 02:52\",\"message\":\"Hello, I need help\"},{\"from\":\"bullet\",\"date\":\"05.06.2022 09:36\",\"message\":\"test\"},{\"from\":\"bullet\",\"date\":\"08.06.2022 08:10\",\"message\":\"This is also a support answer\"},{\"from\":\"bullet\",\"date\":\"08.06.2022 08:11\",\"message\":\"test\"},{\"from\":\"Support\",\"date\":\"08.06.2022 08:13\",\"message\":\"Hallo\"}]',1,1,3),(2,'test','[{\"from\":\"bullet\",\"date\":\"08.06.2022 01:48\",\"message\":\"test\"}]',1,0,1),(3,'Test','[{\"from\":\"bullet\",\"date\":\"08.06.2022 01:58\",\"message\":\"test\"}]',1,0,1);
 /*!40000 ALTER TABLE `dashboard_support_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +201,7 @@ CREATE TABLE `dashboard_users` (
 
 LOCK TABLES `dashboard_users` WRITE;
 /*!40000 ALTER TABLE `dashboard_users` DISABLE KEYS */;
-INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','127.0.0.1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1,1,'test note',0,NULL),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb',NULL,'Memberr','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1,0,'',0,''),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1,0,NULL,0,NULL),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1,0,NULL,0,NULL),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1,0,NULL,0,NULL),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1,0,NULL,0,NULL),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1,0,NULL,0,NULL);
+INSERT INTO `dashboard_users` VALUES (1,'GM4InpOK','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvz3L00CBhMk=','127.0.0.1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1,1,'test note',0,NULL),(2,'GM4InpOKqQ==','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkb','::1','Memberr','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1,0,'',0,'Arschloch 👋'),(3,'GM4InpOKqZxA','PNIKnMfM+8kA','G98Fn9uYoZNPKJYOvz3L00CBhMkbhQ==','::1','Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1,0,NULL,0,NULL),(4,'MNoHmbyfq5Y=','O+ggs6Wa+c8SXNg=','ENoHmbaJrZ8PDJw=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1,0,NULL,0,NULL),(5,'ENoHmZ2fo5Y=','PNIKnMfM+8kASQ==','G98Fn9uYoZNPKJYOvzrL01jLioIegQ==',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',5,0,NULL,0,NULL),(6,'G8gAk4WaqY5FCYofqiLA','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofiybBkk/K',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',1,0,NULL,0,NULL),(7,'G8gAk4WaqY5FCYof','PNIKnMfM+8kASQ==','G8gAk4WaqY5FCYofizvF30CBhMk=',NULL,'Member','https://cdn.icon-icons.com/icons2/1378/PNG/128/avatardefault_92824.png',-1,0,NULL,0,NULL);
 /*!40000 ALTER TABLE `dashboard_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +232,7 @@ CREATE TABLE `loader_keys` (
 
 LOCK TABLES `loader_keys` WRITE;
 /*!40000 ALTER TABLE `loader_keys` DISABLE KEYS */;
-INSERT INTO `loader_keys` VALUES (1,1,-1,1,15,0,1,'Dt4XhqmVrYR+A5wC',0),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC',0),(3,1,3,2,39,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE=',0),(4,1,1,2,40,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg=',0),(5,1,-1,2,40,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc=',0),(6,1,-1,2,40,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY=',0),(7,1,-1,2,40,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4=',0),(8,1,-1,2,40,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A=',0),(9,1,-1,2,40,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE=',0),(10,1,-1,2,40,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY=',0),(11,1,-1,2,40,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4=',0),(12,1,-1,2,40,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0=',0),(13,1,-1,2,46,0,0,'NfY2os/T/s9yWshW+gjo+2+CtupNrcEeU/2aFEnG5QgmFJ8=',0),(14,1,1,2,46,0,0,'Q/JRtrPTgrYXWstWkR2X8GSCpeo1t7MeL+XocTnGmQROBZY=',0),(15,1,1,2,46,0,0,'Q/IhqKLTmbFoO8lWghSchGSC2JxP0rMeI/ycdj7GlB9KCpk=',0),(16,1,1,2,46,0,0,'L/guts/T+r5kMa5W+hzn5HuCsOJKpbEeVv3rGkrG6RQqEJE=',0),(17,1,1,2,46,0,0,'QvwrvcPTgaxjX8lWg2mc5X2Co5Uvt8geU/yUGT3GlQ1ZbZg=',0),(18,1,-1,0,1,0,0,'PfEopMPTnLgSP8tWmWGUjHOCuOY5vs0eV4GCC0PGmRMrCZM=',0);
+INSERT INTO `loader_keys` VALUES (1,1,-1,1,16,0,1,'Dt4XhqmVrYR+A5wC',0),(2,1,5,2,0,0,0,'Dt4XhqmVrYR+A5wC',0),(3,1,3,2,39,0,0,'NPkzv6bThsR5O8xWnxj062mCpZsutrUeUOKIBUTG8BAqZZE=',0),(4,1,1,2,40,0,0,'Mew0pbHTg7R0LqxWnAGW6h2C2P8/q9AeXoWJEEjGlA0pDZg=',0),(5,1,-1,2,40,0,0,'SOIquM/T+cVuUKFW+RDw92iCo+Iq3dIeV/ufcE7G8hFMBJc=',0),(6,1,-1,2,40,0,0,'L+4+qMXTispsJKpW/RWT7h2C2Jw70NceXPCJc1/G8B1bEIY=',0),(7,1,-1,2,40,0,0,'O4Mno8TTj8l4MshWnwbm7mKCof9K1bQeTv6CFkfG+x1XZY4=',0),(8,1,-1,2,40,0,0,'O40wtqTT+7xkK8lWnxDyimiC0vo4p7QeVeDrGVXG9gNSE5A=',0),(9,1,-1,2,40,0,0,'NetRy7zTkspiXb9W/Gf1jx2Ct59Itc4eQI6DGl3G4w9LDZE=',0),(10,1,-1,2,40,0,0,'Q/EpwsTTmL5yK6pW+BCW8GqCr/YzrMYeU4WdGkfG9REtaYY=',0),(11,1,-1,2,40,0,0,'L/c8ts7Tgr8RJbBW/BaS8myC1uZI19UeU4XvFEPGkwhNaJ4=',0),(12,1,-1,2,40,0,0,'Lvxcw8TT+rplJcxW/gH1+W6C0v82tcUeS4OBe1jG8ghUae0=',0),(13,1,-1,2,46,0,0,'NfY2os/T/s9yWshW+gjo+2+CtupNrcEeU/2aFEnG5QgmFJ8=',0),(14,1,1,2,46,0,0,'Q/JRtrPTgrYXWstWkR2X8GSCpeo1t7MeL+XocTnGmQROBZY=',0),(15,1,1,2,46,0,0,'Q/IhqKLTmbFoO8lWghSchGSC2JxP0rMeI/ycdj7GlB9KCpk=',0),(16,1,1,2,46,0,0,'L/guts/T+r5kMa5W+hzn5HuCsOJKpbEeVv3rGkrG6RQqEJE=',0),(17,1,1,2,46,0,0,'QvwrvcPTgaxjX8lWg2mc5X2Co5Uvt8geU/yUGT3GlQ1ZbZg=',0),(18,1,-1,0,1,0,0,'PfEopMPTnLgSP8tWmWGUjHOCuOY5vs0eV4GCC0PGmRMrCZM=',0);
 /*!40000 ALTER TABLE `loader_keys` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +272,7 @@ CREATE TABLE `loader_users` (
   `note` longtext DEFAULT NULL,
   `failed_hwid_attempt` int(11) DEFAULT 0,
   PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +281,7 @@ CREATE TABLE `loader_users` (
 
 LOCK TABLES `loader_users` WRITE;
 /*!40000 ALTER TABLE `loader_users` DISABLE KEYS */;
-INSERT INTO `loader_users` VALUES (1,1,'Dt4XhqmKrY5V','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3,4,17,16,15,14]','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','123','test',0),(3,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3,4,17,16,15,14]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','192.168.1.1','New Cool note',1),(4,1,'GM4InpOK6dw=','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(5,1,'GM4InpOK6dwA','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(6,1,'GM4InpOK6dwASQ==','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(7,1,'GM4InpOK','PNIKnMfM+8kA',1,'0','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(8,1,'Dt4XhqmLu5hTN40euCX7yE7clA==','OM4InpOM+c8SXNg=',1,'0','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1);
+INSERT INTO `loader_users` VALUES (1,1,'Dt4XhqmKrY4=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3,4,17,16,15,14]','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','123','test',0),(3,1,'Dt4XhoKbu4k=','Dt4XhqmOqY5SH5YJryXBz18=',1,'[1,3,4,17,16,15,14]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','192.168.1.1','New Cool note',1),(4,1,'GM4InpOK6dw=','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(5,1,'GM4InpOK6dwA','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(6,1,'GM4InpOK6dwASQ==','PNIKnMfM+8kASdg=',1,'[1,3]','ENoHmZ0=','KO880sXO/80=','6000000',2,'KMIel5je/Q==',8,'LdIKlpmJu90QWA==','Cd8DlpCZrJtGDJ8crzmWzhmb0g==',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(7,1,'GM4InpOK','PNIKnMfM+8kA',1,'0','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1),(8,1,'Dt4XhqmLu5hTN40euCX7yE7clA==','OM4InpOM+c8SXNg=',1,'0','G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=','::1',1,'G98Jm5g=','NO0ttr+/6LpELpYJqDSE7n/3wJ9K07MTVtarN2CbgQBPCQ==','4293918720',1,'O/Yg0qSHsphPSMxb/meUjGOPl8UOjKNhe9O+LGHL5jV+LLyfgAgi9mGM7ApbndY=',6,'N9IHgJmNp5tVSK4SpTXLy1iP0Z1arOxefw==','SotXwMPT8coTXcBW+GGRiR+Coe01oc4=',NULL,NULL,1);
 /*!40000 ALTER TABLE `loader_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +297,7 @@ CREATE TABLE `logs` (
   `message` longtext DEFAULT NULL,
   `date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`lid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,7 +306,7 @@ CREATE TABLE `logs` (
 
 LOCK TABLES `logs` WRITE;
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
-INSERT INTO `logs` VALUES (1,'Hello World','06.06.2022 11:52'),(2,'User bullet!! signed up\nFor GID: 1','06.06.2022 11:53'),(3,'User bullet!!! signed up\nFor GID: 1','06.06.2022 11:58'),(4,'User bullet!!!! signed up\nFor GID: 1','06.06.2022 11:59'),(5,'User bullet signed up\nFor GID: 1','06.06.2022 11:21'),(6,'User new_user_test signed up\nFor GID: 1','06.06.2022 11:41'),(7,'User test_user_test_test signed up\nFor GID: 1','06.06.2022 11:42'),(8,'Admin: bullet created key: 1D7RA-CP14P-Q6E2T-0NQK0-U55OD-4EOLG','08.06.2022 01:55'),(9,'Admin: bullet created key: V5VEZ-94ME7-TNVPN-M3DWQ-MVT12-4HAAE','08.06.2022 01:56'),(10,'Admin: bullet created key: ZQHLD-OOT8N-XX6MU-IEA9R-DDJBX-PV9IY','08.06.2022 01:56'),(11,'User: bullet created support ticket with title: Test and message: test','08.06.2022 01:58');
+INSERT INTO `logs` VALUES (1,'Hello World','06.06.2022 11:52'),(2,'User bullet!! signed up\nFor GID: 1','06.06.2022 11:53'),(3,'User bullet!!! signed up\nFor GID: 1','06.06.2022 11:58'),(4,'User bullet!!!! signed up\nFor GID: 1','06.06.2022 11:59'),(5,'User bullet signed up\nFor GID: 1','06.06.2022 11:21'),(6,'User new_user_test signed up\nFor GID: 1','06.06.2022 11:41'),(7,'User test_user_test_test signed up\nFor GID: 1','06.06.2022 11:42'),(8,'Admin: bullet created key: 1D7RA-CP14P-Q6E2T-0NQK0-U55OD-4EOLG','08.06.2022 01:55'),(9,'Admin: bullet created key: V5VEZ-94ME7-TNVPN-M3DWQ-MVT12-4HAAE','08.06.2022 01:56'),(10,'Admin: bullet created key: ZQHLD-OOT8N-XX6MU-IEA9R-DDJBX-PV9IY','08.06.2022 01:56'),(11,'User: bullet created support ticket with title: Test and message: test','08.06.2022 01:58'),(12,'Admin: bullet<br>edited user: bulleta','08.06.2022 03:48'),(13,'Admin: bullet<br>edited user: bulleta','08.06.2022 03:48'),(14,'Admin: bullet<br>edited user: bulleta','08.06.2022 04:54'),(15,'Admin: bullet<br>edited user: bulleta','08.06.2022 04:54'),(16,'User: bullet updated support ticket with id: 1 and message: This is also a support answer','08.06.2022 08:10'),(17,'User: bullet updated support ticket with id: 1 and message: test','08.06.2022 08:11'),(18,'Admin: bullet updated support ticket with id: 1 and message: Hallo','08.06.2022 08:13'),(19,'Admin: bullet<br>set jackkakk as owner of group Test Group','09.06.2022 01:13'),(20,'Admin: bullet<br>set bullet as owner of group Test Group','09.06.2022 01:14'),(21,'Admin: bullet<br>set bullet as owner of group Test Group','09.06.2022 01:15'),(22,'Admin: bullet<br>Kicked asdasdasdasd from group: 1','09.06.2022 02:01'),(23,'Admin: bullet<br>Kicked asdasdasdasd from group: 1','09.06.2022 02:01'),(24,'Admin: bullet deleted product from GID 1','09.06.2022 02:20'),(25,'Admin bullet added product test_product to GID 1','09.06.2022 02:24'),(26,'Admin bullet<br>regenerated api key for group 1','09.06.2022 09:39'),(27,'Admin bullet changed the message of the day<br>To: Hello {username},\r<br>we hope you enjoy Rapid Auth','09.06.2022 10:51');
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +324,7 @@ CREATE TABLE `statistics` (
   `total_keys` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1555 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1557 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,7 +333,7 @@ CREATE TABLE `statistics` (
 
 LOCK TABLES `statistics` WRITE;
 /*!40000 ALTER TABLE `statistics` DISABLE KEYS */;
-INSERT INTO `statistics` VALUES (1529,93,60,60,'2022-05-12'),(1530,94,7,46,'2022-05-12'),(1531,98,95,9,'2022-05-12'),(1532,35,30,76,'2022-05-12'),(1533,41,56,10,'2022-05-12'),(1534,73,43,48,'2022-05-12'),(1535,73,58,33,'2022-05-12'),(1536,82,54,26,'2022-05-12'),(1537,39,85,66,'2022-05-12'),(1538,73,11,21,'2022-05-12'),(1539,23,55,20,'2022-05-12'),(1540,31,57,5,'2022-05-12'),(1541,28,52,70,'2022-05-12'),(1542,87,58,62,'2022-05-13'),(1543,33,6,54,'2022-05-13'),(1544,72,84,90,'2022-05-13'),(1545,11,86,98,'2022-05-13'),(1546,67,49,22,'2022-05-13'),(1547,56,88,44,'2022-05-13'),(1548,51,83,14,'2022-05-13'),(1549,9,38,8,'2022-05-13'),(1550,92,81,40,'2022-05-13'),(1551,59,49,23,'2022-05-13'),(1552,86,17,99,'2022-05-13'),(1553,99,37,44,'2022-05-13'),(1554,8,77,12,'2022-05-13');
+INSERT INTO `statistics` VALUES (1529,93,60,60,'2022-05-12'),(1530,94,7,46,'2022-05-12'),(1531,98,95,9,'2022-05-12'),(1532,35,30,76,'2022-05-12'),(1533,41,56,10,'2022-05-12'),(1534,73,43,48,'2022-05-12'),(1535,73,58,33,'2022-05-12'),(1536,82,54,26,'2022-05-12'),(1537,39,85,66,'2022-05-12'),(1538,73,11,21,'2022-05-12'),(1539,23,55,20,'2022-05-12'),(1540,31,57,5,'2022-05-12'),(1541,28,52,70,'2022-05-12'),(1542,87,58,62,'2022-05-13'),(1543,33,6,54,'2022-05-13'),(1544,72,84,90,'2022-05-13'),(1545,11,86,98,'2022-05-13'),(1546,67,49,22,'2022-05-13'),(1547,56,88,44,'2022-05-13'),(1548,51,83,14,'2022-05-13'),(1549,9,38,8,'2022-05-13'),(1550,92,81,40,'2022-05-13'),(1551,59,49,23,'2022-05-13'),(1552,86,17,99,'2022-05-13'),(1553,99,37,44,'2022-05-13'),(1554,8,77,12,'2022-05-13'),(1555,7,2,18,'2022-06-09'),(1556,7,2,18,'2022-06-09');
 /*!40000 ALTER TABLE `statistics` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -322,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-08 15:42:51
+-- Dump completed on 2022-06-10 13:10:35
