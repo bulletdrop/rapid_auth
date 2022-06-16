@@ -112,7 +112,7 @@
                         Are you sure ?
                         
                     </div>
-                    <button id="kick_button" onclick="leave_group()" type="button" class="btn btn-success w-md">Yes</button>
+                    <a id="remove_product_href"><button type="button" class="btn btn-success w-md">Yes</button></a>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
@@ -289,7 +289,8 @@
 
             function confirm_remove(id)
             {
-                
+                document.getElementById("remove_product_href").href = "../backend/groups/remove_product.php?confirmed=yes&id=" + id;
+                $(".remove_product_modal").modal();
             }
 
             function freeze_keys_modal(id)
