@@ -16,6 +16,8 @@ function check_cookie()
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
+    
+
     $cookie_data = explode("*#*", decrypt_data($_COOKIE["user_cookie"], $key));
 
     if ($cookie_data[4] != $salt)
