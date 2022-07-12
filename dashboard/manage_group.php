@@ -215,7 +215,7 @@
                                     <form method="post" action="../backend/groups/update_pgp.php">
                                     <div class="col-lg-12">
                                     <div class="card-box">
-                                        <div style="margin-top: 2em;" class="form-group row">
+                                        <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Public Key</label>
                                             <textarea name="public_key" class="form-control" rows="5">'.get_public_key_by_gid($gid).'</textarea>
                                         </div>
