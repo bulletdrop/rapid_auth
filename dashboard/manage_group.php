@@ -191,6 +191,56 @@
                 </div>
                 <!-- end row -->
 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="m-t-0 header-title">PGP</h4>
+                            <?php
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+
+                                if (!uid_in_group(get_cookie_information()[2]))
+                                    echo '<script>error_msg("You\'re not in a group")</script>';   
+                                
+                                if (uid_in_group(get_cookie_information()[2]) && get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) != get_cookie_information()[2])
+                                    echo '<p>You\'re currently only a group memeber, you can only leave the current group</p>
+                                    <button onclick="confirm_leave_group()" type="button" class="btn btn-danger w-md">Leave group</button>';
+
+                                if (get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) == get_cookie_information()[2])
+                                {
+                                    $gid = get_gid_by_uid(get_cookie_information()[2]);
+                                    $member_array = json_decode(get_member_array_by_gid($gid));
+                                    echo '
+                                    <form method="post" action="../backend/groups/update_pgp.php">
+                                    <div class="col-lg-12">
+                                    <div class="card-box">
+                                        <div style="margin-top: 2em;" class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Public Key</label>
+                                            <textarea name="public_key" class="form-control" rows="5">'.get_public_key_by_gid($gid).'</textarea>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Private Key</label>
+                                            <textarea name="private_key" class="form-control" rows="5">'.get_private_key_by_gid($gid).'</textarea>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Private Key Password</label>
+                                            <textarea name="private_key_password" class="form-control" rows="5">'.get_private_key_password_by_gid($gid).'</textarea>
+                                        </div>
+                                    </div> <!-- end card-box -->
+                                    <input type="submit" value="Save" class="btn btn-primary w-md">
+                                    </form>
+                                </div>
+                                    ';
+                                }
+                            ?>
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+
             </div> <!-- end container -->
         </div>
         <!-- end wrapper -->

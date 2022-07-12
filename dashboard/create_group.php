@@ -102,6 +102,28 @@
                                         <input name="key_name" type="text" required="" class="form-control">
                                     </div>
                                 </div>   
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">PGP Public Key<span class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <textarea name="public_key" class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>   
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">PGP Private Key<span class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <textarea name="private_key" class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>   
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">PGP Private Key Password<span class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <input name="private_key_password" type="text" required="" class="form-control">
+                                    </div>
+                                </div>   
+
                                 <div>
                                     <button type="submit" name="submit" class="btn btn-primary waves-effect waves-light">
                                         Submit
@@ -182,6 +204,9 @@
         $post_group_name = $_POST["group_name"];
         $post_key_name = $_POST["key_name"];
         $post_product_name = $_POST["product_name"];
+        $private_key_password = $_POST["private_key_password"];
+        $private_key = $_POST["private_key"];
+        $public_key = $_POST["public_key"];
         
         if (strlen($post_group_name) > 1 && strlen($post_key_name) > 1 && strlen($post_product_name) > 1)
         {
@@ -198,7 +223,7 @@
                     break;
                 default:
                     set_key_used($post_key_name);
-                    insert_group_in_db($post_group_name, get_cookie_information()[2], $post_product_name);
+                    insert_group_in_db($post_group_name, get_cookie_information()[2], $post_product_name, $private_key, $public_key, $private_key_password);
                     update_user_table(get_cookie_information()[2], get_group_gid_by_group_name($post_group_name));
                     write_log("Created group " . $post_group_name . " with license key: " . $post_key_name, true);
                     echo '<script>window.location.href = "manage_group.php";</script>';
