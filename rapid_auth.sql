@@ -105,9 +105,7 @@ CREATE TABLE `dashboard_groups` (
   `group_name` varchar(255) DEFAULT NULL,
   `products_array` varchar(1000) DEFAULT '',
   `api_key` varchar(500) DEFAULT NULL,
-  `public_key` text DEFAULT NULL,
-  `private_key` text DEFAULT NULL,
-  `private_key_password` varchar(500) DEFAULT NULL,
+  `openssl_crypting_key` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`gid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -118,7 +116,7 @@ CREATE TABLE `dashboard_groups` (
 
 LOCK TABLES `dashboard_groups` WRITE;
 /*!40000 ALTER TABLE `dashboard_groups` DISABLE KEYS */;
-INSERT INTO `dashboard_groups` VALUES (1,'[6,1,4]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\",\"test_product\"]','3XXQuGVFy6l8iVBTkHCIsK2DJgYzC5c1B2vtPrue3A9yUPo60WnIZkWCWt2FeuJB','new_public_key','new_private_key','new_password'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA',NULL,NULL,NULL),(3,'[8]',1,8,'ENoHmamKrY5VN54JpCTU40fAjA==','[\"idk\"]','sf78txnCECgPWwGGtotc5abZUFsDcl9nZjCPGCenpTmBaqb7IBmiBbZiameIfZxW','this is my secure public key','this is my secure private key','this is my secure password ');
+INSERT INTO `dashboard_groups` VALUES (1,'[6,1,4]',1,1,'Lt4Xhta5upJUGA==','[\"test\",\"test1\",\"IDA License\",\"asd\",\"asdasd\",\"test_product\"]','3XXQuGVFy6l8iVBTkHCIsK2DJgYzC5c1B2vtPrue3A9yUPo60WnIZkWCWt2FeuJB','asd'),(2,'[1]',1,5,'N8JEtYSRvY0=','[\"Test product\"]','IyorlpelJENxDk4kCPeFD2nKMHOkiCCATqqdxGBobHO9Qw7Moqd636a0HdnA5PsA',NULL),(3,'[8]',1,8,'ENoHmamKrY5VN54JpCTU40fAjA==','[\"idk\"]','sf78txnCECgPWwGGtotc5abZUFsDcl9nZjCPGCenpTmBaqb7IBmiBbZiameIfZxW',NULL);
 /*!40000 ALTER TABLE `dashboard_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,4 +347,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-12 16:52:58
+-- Dump completed on 2022-07-13 21:38:24
