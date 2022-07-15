@@ -109,6 +109,10 @@ $nav_bar = ' <header id="topnav">
                 </li>
 
                 <li class="has-submenu">
+                    <a href="downloads.php"><i class="mdi mdi-download"></i>Downloads</a>
+                </li>
+
+                <li class="has-submenu">
                     <a href="' . $discord_invite . '"><i class="mdi mdi-discord"></i>Discord Server</a>
                 </li>
             </ul>
