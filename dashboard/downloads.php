@@ -69,13 +69,15 @@
                                     <div class="nav flex-column nav-pills nav-pills-tab" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                         <a class="nav-link active show mb-2" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
                                             C# DLL</a>
-                                        <a class="nav-link mb-2" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                        <a class="nav-link mb-2" id="v-pills-c-sharp-example-tab" data-toggle="pill" href="#v-pills-c-sharp-example" role="tab" aria-controls="v-pills-c-sharp-example" aria-selected="false">
                                             C# Example</a>
+                                        <a class="nav-link mb-2" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                            Python Example</a>
                                         <a class="nav-link mb-2" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
                                             Source Code: Dashboard</a>
                                         <a class="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
                                             Source Code: Admin Dashboard</a>
-                                        <a class="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                                        <a class="nav-link mb-2" id="v-pills-api-src-tab" data-toggle="pill" href="#v-pills-api-src" role="tab" aria-controls="v-pills-api-src" aria-selected="false">
                                             Source Code: API</a>
                                     </div>
                                 </div> <!-- end col-->
@@ -84,8 +86,11 @@
                                         <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                             <a href="../backend/files/rapid-auth-dll.7z"><button type="button" class="btn btn-success w-md">Download</button></a>
                                         </div>
-                                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                        <div class="tab-pane fade" id="v-pills-c-sharp-example" role="tabpanel" aria-labelledby="v-pills-c-sharp-example-tab">
                                             <a href="../backend/files/rapid-auth-example-forms.7z"><button type="button" class="btn btn-success w-md">Download</button></a>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                            <a href="../backend/files/rapid_auth_py.zip"><button type="button" class="btn btn-success w-md">Download</button></a>
                                         </div>
                                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                             <a href="https://github.com/bulletdrop/rapid_auth"><button type="button" class="btn btn-success w-md">GitHub</button></a>
@@ -93,7 +98,7 @@
                                         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                             <a href="https://github.com/bulletdrop/rapid_auth_admin"><button type="button" class="btn btn-success w-md">GitHub</button></a>
                                         </div>
-                                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                        <div class="tab-pane fade" id="v-pills-api-src" role="tabpanel" aria-labelledby="v-pills-api-src-tab">
                                             <a href="https://github.com/bulletdrop/rapid_auth_api"><button type="button" class="btn btn-success w-md">GitHub</button></a>
                                         </div>
                                     </div>
