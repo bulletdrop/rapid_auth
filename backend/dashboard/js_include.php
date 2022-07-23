@@ -38,6 +38,12 @@ $js = '
     <!-- App js -->
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
+    <!-- Sweet Alert Js  -->
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="assets/js/jquery.sweet-alert.init.js"></script>
+    <!-- Toastr js -->
+    <script src="assets/libs/jquery-toast-plugin/jquery.toast.min.js"></script>
+    <script src="assets/js/jquery.toastr.js"></script>
 ';
 
 ?>

@@ -147,7 +147,6 @@
                         <div class="card-box">
                             <h4 class="m-t-0 header-title">Create multiple Keys</h4>
                             <form class="form-horizontal" method="post">
-
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label"></label>
                                     <div class="col-md-10">
@@ -158,7 +157,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Amount<span class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input id="amount" name="amount" type="number" required="" class="form-control" value="1" min="2" max="1000">
+                                        <input id="amount" name="amount" type="number" required="" class="form-control" value="1" min="2" max="100">
                                     </div>
                                 </div>      
 
@@ -349,9 +348,16 @@
 
         if ($product_id != "-1")
         {
-            insert_key_in_db($gid, $key_name, $product_id, $lifetime, $freezed, $days_left);
-            write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
-            echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
+            if (!check_if_key_with_same_name_exist($key_name, $gid))
+            {
+                insert_key_in_db($gid, $key_name, $product_id, $lifetime, $freezed, $days_left);
+                write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
+                //echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
+            }
+            else
+            {
+                echo '<script>alert("Key with same name already exist");</script>';
+            }
         }
     }
 
@@ -374,13 +380,41 @@
 
         if ($product_id != "-1")
         {
+            //Check if there are more keys than entered in the amount field
+            $counter_keys = 0;
             foreach (explode($seperator, $key_name) as $key)
             {
-                insert_key_in_db($gid, $key, $product_id, $lifetime, $freezed, $days_left);
-                write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
+                $counter_keys++;
             }
-                
-            echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
+
+            if ($_POST["amount"] == $counter_keys && $counter_keys <= 100)
+            {
+                $none_failed = true;
+                $failed_keys = array();
+                foreach (explode($seperator, $key_name) as $key_item)
+                {
+                    if (!check_if_key_with_same_name_exist($key_item, $gid))
+                    {
+                        insert_key_in_db($gid, $key_item, $product_id, $lifetime, $freezed, $days_left);
+                        write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
+                    }
+                    else
+                    {
+                        array_push($failed_keys, $key_item);
+                        $none_failed = false;
+                    }
+                }
+
+                if ($none_failed)
+                    echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
+                else
+                {
+                    $string_failed_keys = "";
+                    foreach ($failed_keys as $failed_key)
+                        $string_failed_keys = $string_failed_keys . $failed_key . ", ";
+                    echo '<script>alert("One or more keys allready exist: '. $string_failed_keys .'");</script>';
+                }
+            }   
         }
     }
     

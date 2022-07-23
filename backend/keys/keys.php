@@ -80,4 +80,18 @@ function get_product_name_by_kid_and_gid($kid, $gid)
     return "0";
 }
 
+function check_if_key_with_same_name_exist($license_key, $gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT kid FROM loader_keys WHERE owner_gid=? AND key_name = ?");
+    $statement->execute(array($gid, encrypt_data($license_key, $key))); 
+    
+    if ($statement->rowCount() == 0)
+        return false;
+
+    return true;
+}
+
 ?>
