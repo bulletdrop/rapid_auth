@@ -29,8 +29,23 @@ function insert_key_in_db($gid, $key_name, $product_id, $lifetime, $freezed, $da
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
-    $statement = $pdo->prepare("INSERT INTO loader_keys (owner_gid, product_id, days_left, freezed, `lifetime`, key_name) VALUES (?, ?, ?, ?, ?, ?);");
-    $statement->execute(array($gid, $product_id, $days_left, $freezed, $lifetime, encrypt_data($key_name, $key)));
+    $statement = $pdo->prepare("INSERT INTO loader_keys (owner_gid, product_id, days_left, freezed, `lifetime`, key_name, creator_uid) VALUES (?, ?, ?, ?, ?, ?, ?);");
+    $statement->execute(array($gid, $product_id, $days_left, $freezed, $lifetime, encrypt_data($key_name, $key), get_cookie_information()[2]));
+}
+
+function get_key_creator_uid_by_kid($kid, $gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT creator_uid FROM loader_keys WHERE owner_gid=? AND kid=?");
+    $statement->execute(array($gid, $kid));  
+    
+    while($row = $statement->fetch()) {
+        return $row["creator_uid"];
+    }
+    
+    return "0";
 }
 
 function get_days_left_by_kid_and_gid($kid, $gid)

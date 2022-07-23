@@ -148,6 +148,11 @@
                                                             <label class="col-sm-2 col-form-label">Days left</label>
                                                             <div class="col-sm-10"> <input type="number" name="days_left" class="form-control" value="' . $key[4] .'"> </div>
                                                         </div>
+
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Creator Name</label>
+                                                            <div class="col-sm-10"> <p>'. get_username_by_uid(get_key_creator_uid_by_kid($key[0], $gid)) . '</p> </div>
+                                                        </div>
                                                         
 
                                                         <div class="form-group row">
