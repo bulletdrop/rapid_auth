@@ -73,6 +73,8 @@
                                             C# Example</a>
                                         <a class="nav-link mb-2" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                             Python Example</a>
+                                        <a class="nav-link mb-2" id="v-pills-cpp-tab" data-toggle="pill" href="#v-pills-cpp" role="tab" aria-controls="v-pills-cpp" aria-selected="false">
+                                            C++ Example</a>
                                         <a class="nav-link mb-2" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
                                             Source Code: Dashboard</a>
                                         <a class="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
@@ -84,13 +86,16 @@
                                 <div class="col-sm-9">
                                     <div class="tab-content pt-0">
                                         <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                            <a href="../backend/files/rapid-auth-dll.7z"><button type="button" class="btn btn-success w-md">Download</button></a>
+                                            <a href="https://github.com/bulletdrop/rapid-auth-dll"><button type="button" class="btn btn-success w-md">GitHub</button></a>
                                         </div>
                                         <div class="tab-pane fade" id="v-pills-c-sharp-example" role="tabpanel" aria-labelledby="v-pills-c-sharp-example-tab">
-                                            <a href="../backend/files/rapid-auth-example-forms.7z"><button type="button" class="btn btn-success w-md">Download</button></a>
+                                            <a href="https://github.com/bulletdrop/rapid-auth-example-forms"><button type="button" class="btn btn-success w-md">GitHub</button></a>
                                         </div>
                                         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                            <a href="../backend/files/rapid_auth_py.zip"><button type="button" class="btn btn-success w-md">Download</button></a>
+                                            <a href="https://github.com/bulletdrop/rapid_auth_py"><button type="button" class="btn btn-success w-md">GitHub</button></a>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-cpp" role="tabpanel" aria-labelledby="v-pills-cpp-tab">
+                                            <a href="https://github.com/bulletdrop/rapid-auth-cpp"><button type="button" class="btn btn-success w-md">GitHub</button></a>
                                         </div>
                                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                             <a href="https://github.com/bulletdrop/rapid_auth"><button type="button" class="btn btn-success w-md">GitHub</button></a>
@@ -101,6 +106,7 @@
                                         <div class="tab-pane fade" id="v-pills-api-src" role="tabpanel" aria-labelledby="v-pills-api-src-tab">
                                             <a href="https://github.com/bulletdrop/rapid_auth_api"><button type="button" class="btn btn-success w-md">GitHub</button></a>
                                         </div>
+                                        
                                     </div>
                                 </div> <!-- end col-->
                             </div> <!-- end row-->
