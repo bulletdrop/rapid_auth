@@ -180,6 +180,10 @@
                                             <label class="col-sm-2 col-form-label">API Key</label>
                                             <div class="col-sm-8"><input type="text" disabled class="form-control" value="' . get_api_key_by_gid($gid) . '"></div>
                                         </div>
+                                        <div style="margin-top: 2em;" class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Discord Bot API Key</label>
+                                            <div class="col-sm-8"><input type="text" disabled class="form-control" value="' . get_bot_api_key_by_gid($gid) . '"></div>
+                                        </div>
                                     </div> <!-- end card-box -->
                                         
                                 </div>
