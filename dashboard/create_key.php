@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -147,12 +150,6 @@
                         <div class="card-box">
                             <h4 class="m-t-0 header-title">Create multiple Keys</h4>
                             <form class="form-horizontal" method="post">
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label"></label>
-                                    <div class="col-md-10">
-                                    <button type="button" onclick="generate_key_mass()" class="btn btn-primary w-md">Generate</button>
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Amount<span class="text-danger">*</span></label>
@@ -166,14 +163,7 @@
                                     <div class="col-sm-10">
                                         <input name="seperator" id="seperator" type="text" required="" class="form-control" value=",">
                                     </div>
-                                </div>                        
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Keys<span class="text-danger">*</span></label>
-                                    <div class="col-sm-10">
-                                        <textarea id="key_name_mass" name="key_name_mass" class="form-control" rows="5"></textarea>
-                                    </div>
-                                </div>
+                                </div>         
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Days<span class="text-danger">*</span></label>
@@ -369,7 +359,6 @@
         $freezed = 0;
         $lifetime = 0;
         $days_left = $_POST["days_left_mass"];
-        $key_name = $_POST["key_name_mass"];
         $seperator = $_POST["seperator"];
 
         if ($_POST["freezed_mass"] == "on")
@@ -380,40 +369,28 @@
 
         if ($product_id != "-1")
         {
-            //Check if there are more keys than entered in the amount field
-            $counter_keys = 0;
-            foreach (explode($seperator, $key_name) as $key)
-            {
-                $counter_keys++;
-            }
+            if ($_POST["amount"] <= 20)
+            {               
+                $generated_keys = array();
 
-            if ($_POST["amount"] == $counter_keys && $counter_keys <= 100)
-            {
-                $none_failed = true;
-                $failed_keys = array();
-                foreach (explode($seperator, $key_name) as $key_item)
+                for ($counter = 0; $counter < $_POST["amount"]; $counter++)
                 {
-                    if (!check_if_key_with_same_name_exist($key_item, $gid))
+                    $key_added_to_db = false;
+                    while (!$key_added_to_db)
                     {
-                        insert_key_in_db($gid, $key_item, $product_id, $lifetime, $freezed, $days_left);
-                        write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
-                    }
-                    else
-                    {
-                        array_push($failed_keys, $key_item);
-                        $none_failed = false;
+                        $generated_key = generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true);
+                        if (!check_if_key_with_same_name_exist($generated_key, $gid))
+                        {
+                            insert_key_in_db($gid, $generated_key, $product_id, $lifetime, $freezed, $days_left);
+                            write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
+                            array_push($generated_keys, $generated_key);
+                            $key_added_to_db = true;
+                        }
                     }
                 }
+                $_SESSION["generated_keys"] = implode($seperator,$generated_keys);
 
-                if ($none_failed)
-                    echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/key_manager.php";</script>';
-                else
-                {
-                    $string_failed_keys = "";
-                    foreach ($failed_keys as $failed_key)
-                        $string_failed_keys = $string_failed_keys . $failed_key . ", ";
-                    echo '<script>alert("One or more keys allready exist: '. $string_failed_keys .'");</script>';
-                }
+                redirect("generated_keys.php");
             }   
         }
     }

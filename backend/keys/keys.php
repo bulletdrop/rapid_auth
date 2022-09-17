@@ -15,6 +15,20 @@ function get_keys_by_gid($gid)
     return $keys;
 }
 
+function generateRandomString($length = 10, $use_only_upper_chars = false) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    if ($use_only_upper_chars)
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 function update_key($gid, $kid, $loader_user_id, $days_left, $freezed, $lifetime, $key_name)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';

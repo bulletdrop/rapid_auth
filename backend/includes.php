@@ -26,6 +26,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/loader_users/l_users
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/support/support_requests.php';
 
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/js_functions.php';
+
 //include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/dashboard/message_of_the_day.php';
 
 ?>
