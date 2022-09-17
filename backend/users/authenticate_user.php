@@ -5,7 +5,7 @@ function valid_input($username, $password)
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
-    $statement = $pdo->prepare("SELECT uid FROM dashboard_users WHERE username = ? AND password = ? AND banned=0");
+    $statement = $pdo->prepare("SELECT uid FROM dashboard_users WHERE username = ? AND password = ?");
     $statement->execute(array(encrypt_data($username, $key), encrypt_data($password, $key)));   
     if ($statement->fetchColumn() == 0)
         return false;

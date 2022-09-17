@@ -167,7 +167,7 @@ function get_ban_message_by_username($username)
     return "-1";
 }
 
-function user_is_not_banned($username)
+function user_is_banned($username)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
