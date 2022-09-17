@@ -44,6 +44,7 @@ $js = '
     <!-- Toastr js -->
     <script src="assets/libs/jquery-toast-plugin/jquery.toast.min.js"></script>
     <script src="assets/js/jquery.toastr.js"></script>
+    <script src="assets/js/toastr.js"></script>
 ';
 
 ?>

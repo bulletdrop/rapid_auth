@@ -40,6 +40,10 @@ session_start();
         <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
         <link href="assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
 
+        
+        <!-- Toastr CSS -->
+        <link href="assets/css/toastr.css" rel="stylesheet"/>
+
     </head>
 
     <body>
@@ -154,7 +158,7 @@ session_start();
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Amount<span class="text-danger">*</span></label>
                                     <div class="col-sm-10">
-                                        <input id="amount" name="amount" type="number" required="" class="form-control" value="1" min="2" max="100">
+                                        <input id="amount" name="amount" type="number" required="" class="form-control" value="2" min="2" max="20">
                                     </div>
                                 </div>      
 
@@ -346,7 +350,7 @@ session_start();
             }
             else
             {
-                echo '<script>alert("Key with same name already exist");</script>';
+                echo "<script>toastr.error('Key with same name already exist', 'Error');</script>";
             }
         }
     }
@@ -393,6 +397,8 @@ session_start();
                 redirect("generated_keys.php");
             }   
         }
+        else
+            echo "<script>toastr.error('Too many keys', 'Error');</script>";
     }
     
 
