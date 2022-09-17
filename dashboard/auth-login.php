@@ -119,7 +119,7 @@
         switch (false)
         {
             case (strlen($post_password) > 4 && strlen($post_username) > 3):
-                echo '<script>showError("Input too short")</script>';
+                echo "<script>toastr.error('Input too short', 'Error')</script>";
                 break;
             case (!valid_input($post_username, $post_password)):
                 if (!user_is_banned($post_username))
