@@ -123,4 +123,15 @@ function check_if_key_with_same_name_exist($license_key, $gid)
     return true;
 }
 
+function count_loader_keys_by_gid($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT kid FROM loader_keys WHERE owner_gid=?");
+    $statement->execute(array($gid)); 
+    
+    return $statement->rowCount();
+}
+
 ?>

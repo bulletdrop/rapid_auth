@@ -40,6 +40,10 @@ session_start();
         <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
         <link href="assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
 
+        
+        <!-- Toastr CSS -->
+        <link href="assets/css/toastr.css" rel="stylesheet"/>
+
     </head>
 
     <body>
@@ -148,6 +152,12 @@ session_start();
     {
         
     }
+
+    if (isset($_SESSION["max_keys_reached"]))
+    {
+        echo "<script>toastr.error('Key limit reached', 'Error');</script>";
+    }
+
     
 
 ?>

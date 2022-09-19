@@ -17,6 +17,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/create_user.ph
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/create_group.php';
 
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/ranks.php';
+
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/dashboard/get_stats.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/keys/keys.php';
 

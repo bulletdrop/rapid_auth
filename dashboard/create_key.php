@@ -350,7 +350,7 @@ session_start();
             }
             else
             {
-                echo "<script>toastr.error('Key with same name already exist', 'Error');</script>";
+                $_SESSION["max_keys_reached"] = true;
             }
         }
     }
@@ -379,18 +379,27 @@ session_start();
 
                 for ($counter = 0; $counter < $_POST["amount"]; $counter++)
                 {
-                    $key_added_to_db = false;
-                    while (!$key_added_to_db)
+                    if (get_max_keys_by_gid($gid) > count_loader_keys_by_gid($gid))
                     {
-                        $generated_key = generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true);
-                        if (!check_if_key_with_same_name_exist($generated_key, $gid))
+                        $key_added_to_db = false;
+                        while (!$key_added_to_db)
                         {
-                            insert_key_in_db($gid, $generated_key, $product_id, $lifetime, $freezed, $days_left);
-                            write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
-                            array_push($generated_keys, $generated_key);
-                            $key_added_to_db = true;
+                            $generated_key = generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true) . "-" . generateRandomString(5, true);
+                            if (!check_if_key_with_same_name_exist($generated_key, $gid))
+                            {
+                                insert_key_in_db($gid, $generated_key, $product_id, $lifetime, $freezed, $days_left);
+                                write_log("User: " . $dashboard_username . " created key: " . $key_name . " for product: " . $product_name);
+                                array_push($generated_keys, $generated_key);
+                                $key_added_to_db = true;
+                            }
                         }
                     }
+                    else
+                    {
+                        $_SESSION["max_keys_reached"] = true;
+                        break;
+                    }
+                    
                 }
                 $_SESSION["generated_keys"] = implode($seperator,$generated_keys);
 

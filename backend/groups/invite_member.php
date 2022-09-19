@@ -7,7 +7,7 @@ function check_if_invite_exist($uid, $gid)
 
     $statement = $pdo->prepare("SELECT id FROM dashboard_group_invites WHERE uid=? AND accepted=0 AND declined=0 AND gid=?");
     $statement->execute(array($uid, $gid)); 
-    
+    $statement->debugDumpParams();
     if ($statement->rowCount() == 0)
         return false;
 

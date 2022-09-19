@@ -3,7 +3,11 @@
 function redirect($url)
 {
     echo "<script>window.location.href = '$url';</script>";
-    die();
+}
+
+function console_log($data)
+{
+    echo '<script>console.log("' . $data . '");</script>';
 }
 
 ?>

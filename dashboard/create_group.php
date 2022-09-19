@@ -207,7 +207,8 @@
                     break;
                 default:
                     set_key_used($post_key_name);
-                    insert_group_in_db($post_group_name, get_cookie_information()[2], $post_product_name, $openssl_crypting_key);
+                    $rid = get_rid_by_license_key($post_key_name);
+                    insert_group_in_db($post_group_name, get_cookie_information()[2], $post_product_name, $openssl_crypting_key, $rid);
                     update_user_table(get_cookie_information()[2], get_group_gid_by_group_name($post_group_name));
                     write_log("Created group " . $post_group_name . " with license key: " . $post_key_name, true);
                     echo '<script>window.location.href = "manage_group.php";</script>';

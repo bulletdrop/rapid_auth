@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,6 +39,10 @@
         <link href="assets/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
         <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
         <link href="assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+        
+        <!-- Toastr CSS -->
+        <link href="assets/css/toastr.css" rel="stylesheet"/>
 
     </head>
 
@@ -235,6 +242,59 @@
                 </div>
                 <!-- end row -->
 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="m-t-0 header-title">Rank</h4>
+                            <?php
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/security/cookies.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/get_group_info.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/users/get_user_info.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/ranks.php';
+
+                                if (!uid_in_group(get_cookie_information()[2]))
+                                    echo '<script>error_msg("You\'re not in a group")</script>';   
+                                
+                                if (uid_in_group(get_cookie_information()[2]) && get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) != get_cookie_information()[2])
+                                    echo '<p>You\'re currently only a group memeber, you can only leave the current group</p>
+                                    <button onclick="confirm_leave_group()" type="button" class="btn btn-danger w-md">Leave group</button>';
+
+                                if (get_group_owner_uid_by_gid(get_gid_by_uid(get_cookie_information()[2])) == get_cookie_information()[2])
+                                {
+                                    $gid = get_gid_by_uid(get_cookie_information()[2]);
+                                    $rid = get_rank_by_gid($gid);
+
+                                    echo '
+                                    <form method="post" action="../backend/groups/upgrade_group_rank.php">
+                                    <div class="col-lg-12">
+                                    <div class="card-box">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Current Rank: ' . get_rank_name_by_rid($rid) . '</label>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Keys: ' . count_loader_keys_by_gid($gid) . ' / ' . get_max_keys_by_rid($rid) . '</label>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Members: ' . count_group_members_by_gid($gid) . ' / ' . get_max_members_by_rid($rid) . '</label>
+                                        </div>
+
+                                        <div style="margin-top: 2em;" class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Upgrade your rank</label>
+                                            <div class="col-sm-8"><input name="upgrade_key" type="text" class="form-control" placeholder="License key"></div>
+                                        </div>
+                                    </div> <!-- end card-box -->
+                                    <input type="submit" value="Save" class="btn btn-primary w-md">
+                                    </form>
+                                </div>
+                                    ';
+                                }
+                            ?>
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->                    
+
+
             </div> <!-- end container -->
         </div>
         <!-- end wrapper -->
@@ -337,23 +397,39 @@
     {
         if (isset($_POST["submit"]))
         {
-            $invited_member_uid = get_uid_by_username($_POST["new_member_username"]);
-            $gid = get_gid_by_uid(get_cookie_information()[2]);
-            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/invite_member.php';
-            switch (false)
+            if (count_group_members_by_gid($gid) >= get_max_members_by_gid($gid))
             {
-                case !check_if_invite_exist($invited_member_uid, $gid):
-                    echo '<script>error_msg("This user is allready invited")</script>';     
-                    break;
-                case !check_if_allready_in_same_group($gid, $invited_member_uid):
-                    echo '<script>error_msg("This user is allready in this group")</script>';    
-                    break;
-                default:
-                    insert_invite_in_db($invited_member_uid, $gid); 
-                    echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/manage_group.php";</script>';
-                    break;
+                echo "<script>toastr.error('Max members limit reached', 'Error')</script>";
+            }
+            else
+            {
+                $invited_member_uid = get_uid_by_username($_POST["new_member_username"]);
+                $gid = get_gid_by_uid(get_cookie_information()[2]);
+                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/groups/invite_member.php';
+                switch (false)
+                {
+                    case check_username_in_use($_POST["new_member_username"]):
+                        echo "<script>toastr.error('Username doesn\'t exist', 'Error')</script>";
+                        break;
+                    case !check_if_invite_exist($invited_member_uid, $gid):
+                        echo '<script>error_msg("This user is allready invited")</script>';     
+                        break;
+                    case !check_if_allready_in_same_group($gid, $invited_member_uid):
+                        echo '<script>error_msg("This user is allready in this group")</script>';    
+                        break;
+                    default:
+                        insert_invite_in_db($invited_member_uid, $gid); 
+                        echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/manage_group.php";</script>';
+                        break;
+                }
             }
         }
+    }
+
+    if (isset($_SESSION["error_upgrade_key"]))
+    {
+        echo "<script>toastr.error('Something went wrong', 'Error')</script>";
+        unset($_SESSION["error_upgrade_key"]);
     }
     
     

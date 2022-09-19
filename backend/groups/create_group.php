@@ -37,13 +37,13 @@ function set_key_used($license_key)
     $statement->execute(array(encrypt_data($license_key, $key)));
 }
 
-function insert_group_in_db($group_name, $owner_uid, $first_product, $openssl_crypting_key)
+function insert_group_in_db($group_name, $owner_uid, $first_product, $openssl_crypting_key, $rid)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth/backend/config.php';
 
-    $statement = $pdo->prepare("INSERT INTO dashboard_groups (member_array, group_name, owner_uid, active_license, products_array, api_key, openssl_crypting_key, discord_bot_api_key) VALUES (?,?,?,1,?,?,?,));");
-    $statement->execute(array("[$owner_uid]",encrypt_data($group_name, $key), $owner_uid, "[\"$first_product\"]", generateRandomString(64), $openssl_crypting_key, generateRandomString(64)));
+    $statement = $pdo->prepare("INSERT INTO dashboard_groups (member_array, group_name, owner_uid, active_license, products_array, api_key, openssl_crypting_key, discord_bot_api_key, rid) VALUES (?,?,?,1,?,?,?,?));");
+    $statement->execute(array("[$owner_uid]",encrypt_data($group_name, $key), $owner_uid, "[\"$first_product\"]", generateRandomString(64), $openssl_crypting_key, generateRandomString(64), $rid));
 }
 
 function update_user_table($uid, $gid)
