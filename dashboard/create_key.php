@@ -54,7 +54,6 @@ session_start();
             echo $nav_bar;
         ?>
 
-
         <div class="wrapper">
             <div class="container-fluid">
 
