@@ -235,6 +235,32 @@ LOCK TABLES `discord_bot` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `fail2ban`
+--
+
+DROP TABLE IF EXISTS `fail2ban`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fail2ban` (
+  `ipid` int(11) NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(255) DEFAULT NULL,
+  `fail_count` int(11) DEFAULT 1,
+  `last_fail_date` date DEFAULT NULL,
+  PRIMARY KEY (`ipid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fail2ban`
+--
+
+LOCK TABLES `fail2ban` WRITE;
+/*!40000 ALTER TABLE `fail2ban` DISABLE KEYS */;
+INSERT INTO `fail2ban` VALUES (1,'192.168.100.233',0,'2022-09-26'),(2,'127.0.0.1',3,'2022-09-27');
+/*!40000 ALTER TABLE `fail2ban` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `loader_keys`
 --
 
@@ -402,4 +428,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-27 13:37:35
+-- Dump completed on 2022-09-27 17:54:15
