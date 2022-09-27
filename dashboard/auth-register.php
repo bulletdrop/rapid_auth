@@ -134,6 +134,9 @@ if (isset($_POST["submit"]))
 
     switch (false)
     {
+        case (!ip_is_banned($_SERVER['REMOTE_ADDR'])):
+            echo '<script>toastr.error("Your IP is banned from this service, come back tomorrow", "Error")</script>';
+            break;
         case (strlen($post_email) > 4 && strlen($post_password) > 4 && strlen($post_username) > 3):
             echo json_encode(array("status" => "too_short_input"));
             break;
