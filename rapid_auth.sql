@@ -19,6 +19,7 @@
 -- Table structure for table `banned_ips`
 --
 
+
 DROP TABLE IF EXISTS `banned_ips`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -429,3 +430,7 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2022-09-27 17:54:15
+
+CREATE USER 'rapid_auth_user'@'%' IDENTIFIED BY 'rapidauth123';
+GRANT ALL PRIVILEGES ON rapid_auth.* TO 'rapid_auth_user'@'%';
+FLUSH PRIVILEGES;
